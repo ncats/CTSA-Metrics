@@ -23,4 +23,4 @@ The draft operational guidelines can be found here: https://docs.google.com/docu
 
 For background information about the CTSA Program Common Metrics Initiative please see here: http://www.tuftsctsi.org/research-services/research-process-improvement/common-metrics-initiative/ 
 
-To participate in a survey that assesses the technical feasability of the scripts, please visit: https://goo.gl/forms/2wDybtNqis8lovoa2
+To participate in a survey that assesses the technical feasability of the scripts, please visit: https://goo.gl/forms/2wDybtNqis8lovoa2 
