@@ -12,9 +12,9 @@ This Common Metric will provide a baseline scan of the level of coverage of the 
 ## Metric
 The type of data model used in this metric (approved by the iDTF): OMOP, PCORnet, i2b2/ACT, and TriNetX
 This metric results in the following 3 scores (for each data type domain):
-*Count of unique patients with the standard value (numerator)
-*Count of unique patients within the clinical data repository (denominator)
-*Percent of unique patients with the standard value (% = [numerator]/[denominator])
+* Count of unique patients with the standard value (numerator)
+* Count of unique patients within the clinical data repository (denominator)
+* Percent of unique patients with the standard value (% = [numerator]/[denominator])
 
 ## Additional Information
 See detailed description of numerator and denominator statements at: https://docs.google.com/spreadsheets/d/1z_WGSaD5rxt68wbdcEAVE9CtiXAn2IN5SLFcH2RI370/edit#gid=0
