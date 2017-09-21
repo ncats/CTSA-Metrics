@@ -32,7 +32,7 @@ INSERT INTO ctsa_qim(c_sourceontology_cd,c_fullname,c_name,c_mode) VALUES
  ('ACT','\ACT\PROCEDURE\','Procedures as ICD/SNOMED/CPT4','obsfact'),
  ('ACT','\ACT\NOTE\','Note Text','obsfact') 
 GO
-
+/*
 -- PCORnet Ontology metrics
 INSERT INTO ctsa_qim(c_sourceontology_cd,c_fullname,c_name,c_mode) VALUES 
  ('PCORNET','\','Unique Total Patients','total'),
@@ -44,7 +44,7 @@ INSERT INTO ctsa_qim(c_sourceontology_cd,c_fullname,c_name,c_mode) VALUES
  ('PCORNET','\PCORI\DIAGNOSIS\','Diagnosis as ICD/SNOMED','obsfact'),
  ('PCORNET','\PCORI\PROCEDURE\','Procedures as ICD/SNOMED/CPT4','obsfact'),
  ('PCORNET','\PCORI\NOTE\','Note Text','obsfact') 
-GO
+GO*/
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[CTSA_QIMCOUNT]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[CTSA_QIMCOUNT]
