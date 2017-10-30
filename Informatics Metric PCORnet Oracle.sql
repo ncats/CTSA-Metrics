@@ -11,7 +11,7 @@ with DEN as
 union all
 -- Domain Gender: % of unique patient with gender populated
  select 'Demo Gender' as domain, num.cnt as Patients_with_Standards, den.cnt as UNIQUE_TOTAL_PATIENTS, 100.0 * num.cnt/den.cnt as Percent_Standards, 'Not Applicable' as Values_Present
-  from (select count(*) cnt from demographic where sex in ('F','M''NI', 'UN', 'OT')) num, den -- add 'A' if 'Ambiguous' is acceptable)
+  from (select count(*) cnt from demographic where sex in ('F','M','NI', 'UN', 'OT')) num, den -- add 'A' if 'Ambiguous' is acceptable)
 union all
 -- Domain Age/DOBL: % of unique patient with DOB populated
  select 'Demo Age/DOB' as domain, num.cnt as Patients_with_Standards, den.cnt as UNIQUE_TOTAL_PATIENTS, 100.0 * num.cnt/den.cnt as Percent_Standards, 'Not Applicable' as Values_Present
