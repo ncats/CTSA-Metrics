@@ -1,12 +1,13 @@
 ----------------------------------------------------------------------------------------------------------------------------------------
 -- Query Informatics Metrics CTSA EDW
 -- Data Model: i2b2 with ACT ontology
--- Database MS SQL
--- Updated 10/6/2017 - beta release!
+-- Database ORACLE
+-- Updated 11/16/2017 - beta release!
 -- Written by Jeffrey G. Klann, PhD with some code adapted from Griffin Weber, MD, PhD
 -- Translated to Oracle by Matthew Joss and Jeff Klann 
 -- Released under the i2b2 public license: https://www.i2b2.org/software/i2b2_license.html
 -- Do not delete this notice!
+-- Note 11/15/2017 Issues were recorded from Jim Cimino -  2 edits Comments Syntax and Sysdate 
 ----------------------------------------------------------------------------------------------------------------------------------------
 create or replace PROCEDURE PMN_DROPSQL(sqlstring VARCHAR2) AS 
   BEGIN
