@@ -132,7 +132,7 @@ DBMS_OUTPUT.PUT_LINE(total);
  
 
 ------- Get / update DOB totals
-select count(distinct patient_num) into total_dob from PATIENT_DIMENSION where birth_date is not null and extract(year from birth_date)>1900 and extract(year from birth_date)<extract(year from sysdate());
+select count(distinct patient_num) into total_dob from PATIENT_DIMENSION where birth_date is not null and extract(year from birth_date)>1900 and extract(year from birth_date)<extract(year from sysdate);
 update ctsa_qim set c_totalnum= to_char(total_dob) where c_mode='dob';
 
 
@@ -163,7 +163,7 @@ LOOP
     EXECUTE IMMEDIATE sqlstr;
 END LOOP rec;
 
-    // Save the summary level of the counts -- assumes there are no categorical overlaps in dimcode defn!
+    -- Save the summary level of the counts -- assumes there are no categorical overlaps in dimcode defn!
     update ctsa_qim set c_totalnum=
     (select sum(o.numpats) c_totalnum from (select distinct * from ontinoperator) o inner join ctsa_qim q on o.c_fullname like q.c_fullname||'%' 
         where q.c_fullname=ctsa_qim.c_fullname)
