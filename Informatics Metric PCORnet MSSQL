@@ -42,7 +42,7 @@ Select 'Drugs as RxNORM' as domain, num.cnt as Patients_with_Standards, den.cnt 
 union all
 -- Domain Condition: % of unique patient with standard value set for condition
    --CDM separates billing diagnosis (Diagnosis) from problems lists/ patient reported complaints (Condition) 
-Select 'Diagnosis as ICD/SNOMED' as domain, num.cnt as Patients_with_Standards, 10 as UNIQUE_TOTAL_PATIENTS, 100.0 * num.cnt/10 as Percent_Standards, 'Not Applicable' as Values_Present
+Select 'Diagnosis as ICD/SNOMED' as domain, num.cnt as Patients_with_Standards, den.cnt as UNIQUE_TOTAL_PATIENTS, 100.0 * num.cnt/den.cnt  as Percent_Standards, 'Not Applicable' as Values_Present
 			From 
 			(
 		 		Select Count(Distinct numct.PATID)as cnt from 
