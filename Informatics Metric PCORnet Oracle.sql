@@ -1,7 +1,7 @@
 -- Query Informatics Metrics CTSA EDW
 -- Data Model: PCORnet CDM v 3.1
 -- Database Oracle
--- Updated 8/23/2017
+-- Updated 12/12/2017
 
 with DEN as 
   ( select count(*) cnt from demographic )-- CDM standards indicate that demographic should contain one entry per patient. Unique is not required.
