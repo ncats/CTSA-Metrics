@@ -2,7 +2,6 @@
 -- Data Model: PCORnet CDM v 3.1
 -- Database MS SQL 
 -- Updated 12/12/2017
--- Removed Vitals as count row 59
 
 with DEN as 
   ( select count(*) cnt from Demographic)-- CDM standards indicate that demographic should contain one entry per patient. Unique is not required.
