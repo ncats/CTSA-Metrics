@@ -57,9 +57,8 @@ union all
   from (select count(distinct patid) cnt from procedures where not px is null and px_type in ('09','10','CH')) num, den
 union all
 -- Domain Observations:  Checks for the presents of recorded observations
- select 'Observations Present' AS 'Domain',  null as 'Patients with Standards', null as UNIQUE_TOTAL_PATIENTS, null as  '% Standards', 
-		Case When Count(*) = 0 then 'No Observation' else 'Observations Present' end as 'Values Present'		
-	From Vital
+select 'Observations Present' AS domain, null as Patients_with_Standards, null as UNIQUE_TOTAL_PATIENTS, null as Percent_Standards 
+	, Case When Count(*) = 0 then 'No Observation' else 'Observations Present' end as values_present From Vital
 /*
 union all
 -- Domain Observations:  Checks for the presents of recorded vitals	
