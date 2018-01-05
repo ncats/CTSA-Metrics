@@ -1,7 +1,7 @@
 -- Query Informatics Metrics CTSA EDW
 -- Data Model: OMOP 5.X
 -- Database MS SQL
--- Updated 8/18/2017
+-- Updated 01/05/2018
 
 -- With Statement used to calculate Unique Patients, used as the denominator for subsequent measures
 with DEN ([Unique Total Patients]) as
@@ -35,8 +35,8 @@ Union
 		CAST(COUNT(DISTINCT D.person_id) as Float) AS 'Patients with Standards'
 		FROM Person D
 		-- We may want to alter this to be only Year of birth present at this time Year, Month and Day are required in order to count
-		Where D.birth_datetime  is NOT NULL 
-			--Where D.Year_of_Birth  is NOT NULL 
+		        --Where D.birth_datetime  is NOT NULL 
+		Where D.Year_of_Birth  is NOT NULL 
 			--and  D.month_of_Birth is NOT NULL 
 			--and  D.Day_of_Birth  is NOT NULL
 		) Num, DEN
