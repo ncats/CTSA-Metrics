@@ -57,8 +57,12 @@ FROM
  (SELECT person_source_value FROM person op WHERE EXISTS 
 	(SELECT 1 FROM visit_occurrence v, st 
 	 WHERE v.person_source_value = op.person_source_value AND visit_start_date >= st.stdt) 
-	AND datetime_of_birth IS NOT NULL 
-	/* For those using exact OMOP model, replace 
+			-- AND datetime_of_birth IS NOT NULL 
+		and D.Year_of_Birth  is NOT NULL 
+			-- AND  D.month_of_Birth is NOT NULL 
+			-- AND  D.Day_of_Birth  is NOT NULL
+
+  	/* For those using exact OMOP model, replace 
 	AND datetime_of_birth IS NOT NULL 
 	with 
 	AND year_of_birth IS NOT NULL AND month_of_birth IS NOT NULL AND day_of_birth IS NOT NULL 
