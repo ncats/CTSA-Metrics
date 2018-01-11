@@ -12,7 +12,7 @@ Notes:
 */
 WITH st AS 
 ( -- Defining the date to use afterwards
-	SELECT DATE '2007-01-01' AS stdt FROM dual
+	SELECT DATE '1950-01-01' AS stdt FROM dual
 ), den AS
 ( -- Including only patients that have been seen after st.stdt
 	SELECT CAST(Count(*) AS FLOAT) AS "Unique Total Patients" 
