@@ -1,6 +1,7 @@
 /*
 Notes:
-1. The added "WITH st" clause allows to limit the data retrieval to after cut-off date, here set to January 1, 2007.
+1. The added "WITH st" clause allows to limit the data retrieval to after cut-off date, here set to the "beginning of time", 
+   January 1, 1950.
    To change to your site requirements, just change date literal in st definition.
 2. Suggested changes to the presentation of the data are included into individual sectioins, along with comments on 
    what to use to have the original presentation.
@@ -59,13 +60,10 @@ FROM
 	 WHERE v.person_source_value = op.person_source_value AND visit_start_date >= st.stdt) 
 			-- AND datetime_of_birth IS NOT NULL 
 		and D.Year_of_Birth  is NOT NULL 
-			-- AND  D.month_of_Birth is NOT NULL 
-			-- AND  D.Day_of_Birth  is NOT NULL
-
-  	/* For those using exact OMOP model, replace 
-	AND datetime_of_birth IS NOT NULL 
+  	/* For those using CDRN OMOP model, replace 
+	AND year_of_birth IS NOT NULL 
 	with 
-	AND year_of_birth IS NOT NULL AND month_of_birth IS NOT NULL AND day_of_birth IS NOT NULL 
+	AND datetime_of_birth IS NOT NULL 
 	*/
  ) d 
 ) num, den 
