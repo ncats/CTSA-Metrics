@@ -124,7 +124,7 @@ alter table ontInOperator add numpats int;
 	close e
 	deallocate e
 
-    // Save the summary level of the counts -- assumes there are no categorical overlaps in dimcode defn!
+-- Save the summary level of the counts -- assumes there are no categorical overlaps in dimcode defn!
     update q set c_totalnum=x.c_totalnum
     from ctsa_qim q inner join 
     (select q.c_fullname,sum(o.numpats) c_totalnum from (select distinct * from ontinoperator) o inner join ctsa_qim q on o.c_fullname like q.c_fullname+'%' group by q.c_fullname) x
@@ -141,7 +141,7 @@ EXEC sp_executesql @sqlstr;
 
 END
 GO
-EXECUTE CTSA_QIMCOUNT pcornet_demo
+EXECUTE CTSA_QIMCOUNT NCATS_DEMOGRAPHICS
 GO
 SELECT c_name 'Measurement',c_totalnum 'Total Distinct Patients',c_pct 'Percent of Total Patients' FROM CTSA_QIM WHERE C_SOURCEONTOLOGY_CD='ACT'
 GO
