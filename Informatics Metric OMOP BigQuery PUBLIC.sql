@@ -6,15 +6,25 @@
 -- Based on Version: Database MS SQL / Updated 01/05/2018
 -- GBQ Modifications:
 --   - Oracle-like WITH-AS syntax
---   - GBQ aliases cannot have spaces and cannot be quoted. Replaced spaces in aliases with underscores
---   - GBQ Columns cannot have special chars. Replace % char with PerCnt_
---   - Union --> Union All
---   - Replace Float with Float64
---   - GBQ table names (but not column names) are case sensitive
+--   - GBQ aliases cannot have spaces and cannot be quoted.
+--            Replaced spaces in column aliases with underscores
+--            Removed single quotes around column aliases
+--   - GBQ Column names cannot have special chars. 
+--            Replaced %_Standards column alias with PerCnt_Standards
+--   - Replaced Union --> Union All
+--   - Replaced Float with Float64
+--   - GBQ table names are case sensitive
+--            Colorado GBQ table names are ALL CAPS
+--            Changed table names to ALL CAPS
+--            But GBQ column names are not case sensitve (go figure)
 
--- To execute: Replace [ADD YOUR SCHEMA PATH HERE] with the full DB.SCHEMA for your GBQ insance
---             Check table names for case-sensitivity (column names are not case sensitive)
---
+
+-- ********************************************************************************************
+-- TO EXECUTE: 
+--   1. Make sure you are using GBQ Standard SQL
+--   2. Replace [ADD YOUR SCHEMA PATH HERE] with the full DB.SCHEMA for your GBQ instance
+--   3. Check table names for upper/lower case match (column names are not case sensitive)
+-- ********************************************************************************************
 
 
 -- With Statement used to calculate Unique Patients, used as the denominator for subsequent measures
