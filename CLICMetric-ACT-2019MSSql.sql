@@ -1,4 +1,4 @@
--- Replace @CRCSchema with the proper schema name
+-- Replace @CRCSchema with the proper schema name test
 
 IF OBJECT_ID('@CRCSchema.CTSA_CLIC_METRIC', 'U') IS NOT NULL          -- Drop table if it exists
   DROP TABLE @CRCSchema.CTSA_CLIC_METRIC;
