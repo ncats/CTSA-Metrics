@@ -593,10 +593,10 @@ select
     'uniq_pt_smoking' as description,
     (select count(distinct vit1y.PATID) from VITAL vit1y JOIN DEMOGRAPHIC d ON vit1y.PATID = d.PATID 
         WHERE vit1y.MEASURE_DATE between '01-JAN-2020' and '31-DEC-2020' 
-        and SMOKING is not null and SMOKING not in ('NI','UN') and (months_between(d.BIRTH_DATE,vit1y.MEASURE_DATE)/12) >= 12) as one_year,
+        and SMOKING is not null and SMOKING not in ('NI','UN') and (months_between(vit1y.MEASURE_DATE,d.BIRTH_DATE)/12) >= 12) as one_year,
     (select count(distinct vit5y.PATID) from VITAL vit5y JOIN DEMOGRAPHIC d ON vit5y.PATID = d.PATID 
         WHERE vit5y.MEASURE_DATE between '01-JAN-2016' and '31-DEC-2020'
-        and SMOKING is not null and SMOKING not in ('NI','UN') and (months_between(d.BIRTH_DATE,vit5y.MEASURE_DATE)/12) >= 12) as five_year
+        and SMOKING is not null and SMOKING not in ('NI','UN') and (months_between(vit5y.MEASURE_DATE,d.BIRTH_DATE)/12) >= 12) as five_year
 from
     dual
 
