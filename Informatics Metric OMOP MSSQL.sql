@@ -89,7 +89,7 @@ Union
 		) Num, DEN
 
 Union
--- Domain Observations:  Checks for the presents of recorded observations
+-- Domain Observations:  Checks for the presence of recorded observations
 	Select 'Observations Present' AS 'Domain',  '' as 'Patients with Standards', '' as 'Unique Total Patients', '' as  '% Standards', 
 		Case 
 			When Count(*) = 0 then 'No Observation' else 'Observations Present' end as 'Values Present'		
