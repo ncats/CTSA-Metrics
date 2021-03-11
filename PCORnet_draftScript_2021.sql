@@ -377,10 +377,10 @@ select
     'unique_pt_birthdate_in_future' as description,
     (select count(distinct dem.PATID) from ENCOUNTER enc1y JOIN DEMOGRAPHIC dem ON enc1y.PATID = dem.PATID 
         where enc1y.ENC_TYPE NOT IN ('NI','UN') and enc1y.ADMIT_DATE between '01-JAN-2020' and '31-DEC-2020'
-        and dem.BIRTH_DATE >= '01-JAN-2021') as one_year,
+        and dem.BIRTH_DATE > '31-DEC-2021') as one_year,
     (select count(distinct dem.PATID) from ENCOUNTER enc5y JOIN DEMOGRAPHIC dem ON enc5y.PATID = dem.PATID 
         where enc5y.ENC_TYPE NOT IN ('NI','UN') and enc5y.ADMIT_DATE between '01-JAN-2016' and '31-DEC-2020'
-        and dem.BIRTH_DATE >= '01-JAN-2021') as five_year
+        and dem.BIRTH_DATE > '31-DEC-2021') as five_year
 from
     dual
 
