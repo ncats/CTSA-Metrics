@@ -154,7 +154,7 @@ SELECT
 		SELECT COUNT(DISTINCT per.person_id) 
 		FROM person per
 		INNER JOIN visit_occurrence vis
-		ON DATEPART(year, per.birth_datetime) >= 2021
+		ON DATEPART(year, per.birth_datetime) > 2021
 		AND per.person_id = vis.person_id
 		AND vis.visit_start_date BETWEEN '01-01-2020' AND '12-31-2020'
 	) as one_year
@@ -162,7 +162,7 @@ SELECT
 		SELECT COUNT(DISTINCT per.person_id) 
 		FROM person per
 		INNER JOIN visit_occurrence vis
-		ON DATEPART(year, per.birth_datetime) >= 2021
+		ON DATEPART(year, per.birth_datetime) > 2021
 		AND per.person_id = vis.person_id
 		AND vis.visit_start_date BETWEEN '01-01-2016' AND '12-31-2020'
 	) as five_year
