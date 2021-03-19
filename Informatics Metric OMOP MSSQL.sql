@@ -11,7 +11,7 @@ Known issues:
 
 Structure:
 1-user input
-	nlp solutions **Needs to be edited by user (0=no, 1=yes)**
+	nlp solutions **Needs to be edited by user (0=no, 1=yes, NULL = unknown)**
 2-create concept sets
 3-generate metrics 
 
@@ -22,7 +22,7 @@ Structure:
 
 -- Are you using an NLP solution at your site? 
 with nlp_usage as(
-	SELECT @edit_this_or_it_will_error as edit_me --[ 0 = No, 1 = Yes ]
+	SELECT @edit_this_or_it_will_error as edit_me --[ 0 = No, 1 = Yes, NULL = unknown]
 )
 
 ,vital_concepts as (
