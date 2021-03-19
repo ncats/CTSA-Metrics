@@ -22,7 +22,7 @@ Structure:
 
 -- Are you using an NLP solution at your site? 
 with nlp_usage as(
-	SELECT -1 as edit_me --[ 0 = No, 1 = Yes ]
+	SELECT @edit_this_or_it_will_error as edit_me --[ 0 = No, 1 = Yes ]
 )
 
 ,vital_concepts as (
