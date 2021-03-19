@@ -126,6 +126,28 @@ SELECT
 		FROM visit_occurrence
 		WHERE visit_start_date BETWEEN '01-01-2016' AND '12-31-2020'
 	) as five_year
+UNION 
+SELECT 
+	'total_pt_gt_12' as variable_name
+	,(
+		SELECT COUNT(DISTINCT per.person_id) 
+		FROM person per
+		INNER JOIN visit_occurrence vis
+		ON per.birth_datetime IS NOT NULL 
+		AND per.person_id = vis.person_id
+		AND vis.visit_start_date BETWEEN '01-01-2020' AND '12-31-2020'
+		AND DATEDIFF(year, per.birth_datetime, vis.visit_start_date) > 12 
+	) as one_year
+	,(
+		SELECT COUNT(DISTINCT per.person_id) 
+		FROM person per
+		INNER JOIN visit_occurrence vis
+		ON per.birth_datetime IS NOT NULL 
+		AND per.person_id = vis.person_id
+		AND vis.visit_start_date BETWEEN '01-01-2016' AND '12-31-2020'
+		AND DATEDIFF(year, per.birth_datetime, vis.visit_start_date) > 12 
+	) as five_year
+
 
 UNION 
 SELECT 
@@ -284,6 +306,48 @@ SELECT
 			AND observation_date BETWEEN '01-01-2016' AND '12-31-2020'
 		) per
 	) as five_year
+
+UNION 
+SELECT 
+	'uniq_enc_loinc' as variable_name
+	,(
+		SELECT COUNT(DISTINCT per.visit_occurrence_id) 
+		FROM (
+			SELECT visit_occurrence_id
+			FROM measurement meas
+			INNER JOIN concept conc
+			ON conc.vocabulary_id = 'LOINC'
+			AND meas.measurement_concept_id = conc.concept_id
+			AND measurement_date BETWEEN '01-01-2020' AND '12-31-2020'
+
+			UNION 
+			SELECT visit_occurrence_id
+			FROM observation obs
+			INNER JOIN concept conc
+			ON conc.vocabulary_id = 'LOINC'
+			AND obs.observation_concept_id = conc.concept_id
+			AND observation_date BETWEEN '01-01-2020' AND '12-31-2020'
+		) per
+	) as one_year
+	,(
+		SELECT COUNT(DISTINCT per.visit_occurrence_id) 
+		FROM (
+			SELECT visit_occurrence_id
+			FROM measurement meas
+			INNER JOIN concept conc
+			ON conc.vocabulary_id = 'LOINC'
+			AND meas.measurement_concept_id = conc.concept_id
+			AND measurement_date BETWEEN '01-01-2016' AND '12-31-2020'
+
+			UNION 
+			SELECT visit_occurrence_id
+			FROM observation obs
+			INNER JOIN concept conc
+			ON conc.vocabulary_id = 'LOINC'
+			AND obs.observation_concept_id = conc.concept_id
+			AND observation_date BETWEEN '01-01-2016' AND '12-31-2020'
+		) per
+	) as five_year	
 
 
 UNION 
@@ -697,6 +761,10 @@ Spec: At least one vital: height, weight, blood pressure, BMI, or temperature
 	1004059
 	4178505
 */
+
+
+-- There isn't a vital sign table in OMOP 
+-- Either need list of concepts to search for or leave null as below 
 UNION 
 SELECT 
 	'uniq_pt_vital_sign' as variable_name
@@ -901,4 +969,3 @@ SELECT
 	,NULL as five_year
 
 ;
-
