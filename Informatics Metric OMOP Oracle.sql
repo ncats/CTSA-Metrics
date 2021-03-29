@@ -1,183 +1,768 @@
 /*
-Notes:
-1. The added "WITH st" clause allows to limit the data retrieval to after cut-off date, here set to January 1, 2007.
-   To change to your site requirements, just change date literal in st definition.
-2. Suggested changes to the presentation of the data are included into individual sectioins, along with comments on 
-   what to use to have the original presentation.
-3. The query assumes that it is run in schema where OMOP tables are present.
-4. The query assumes that OMOP dictionaries are under different schema, here called "omop".
-5. The query is developed and tested on CDRN OMOP common data model (CDM); the differences from standard 
-   OMOP CDM are indicated in comments to specific section, along with instructions on how to modify 
-   the query to use on standard OMOP CDM.
-*/
-WITH st AS 
-( -- Defining the date to use afterwards
-	SELECT DATE '1950-01-01' AS stdt FROM dual
-), den AS
-( -- Including only patients that have been seen after st.stdt
-	SELECT CAST(Count(*) AS FLOAT) AS "Unique Total Patients" 
-	FROM person op WHERE EXISTS 
-	(SELECT 1 FROM visit_occurrence v, st 
-	 WHERE v.person_source_value = op.person_source_value AND visit_start_date >= st.stdt) 
--- add to every subquery
-)
--- Domain Demographics Unique Patients
--- Suggested change: use number and 100% instead of NULLs (empty strings in MS SQL)
-SELECT 'Demo Unique Patients' AS "Domain", "Unique Total Patients" AS "Patients with Standards", /* or NULL AS ...*/
-  "Unique Total Patients", 100 AS "% Standards", /* or NULL AS ...*/ 
-  'Not Applicable' AS "Values Present" 
-FROM den
-UNION
--- Domain Gender: % of unique patient with gender populated
-SELECT num.*, den.*, 
-  Round((100.0 * (num."Patients with Standards"/ den."Unique Total Patients")),2) AS "% Standards", 
-  'Not Applicable' AS "Values Present" 
-FROM 
-(SELECT 'Demo Gender' AS "Domain", 
-   CAST(COUNT(*) AS FLOAT) AS "Patients with Standards"
--- Including only patients that have been seen after st.stdt
- FROM 
- (SELECT gender_concept_id, person_source_value FROM person op WHERE EXISTS 
-	(SELECT 1 FROM visit_occurrence v, st 
-	 WHERE v.person_source_value = op.person_source_value AND visit_start_date >= st.stdt) 
- ) d 
- INNER JOIN omop.concept c ON d.gender_concept_id = c.concept_id 
-   AND c.vocabulary_id = 'Gender' 
-) num, den 
-UNION
--- Domain Age/DOBL: % of unique patient with DOB populated
-SELECT num.*, den.*, 
-  Round((100.0 * (num."Patients with Standards"/ den."Unique Total Patients")),2) AS "% Standards", 
-  'Not Applicable' AS "Values Present" 
-FROM 
-(SELECT 'Demo Age/DOB' AS "Domain", 
-   CAST(COUNT(*) AS Float) AS "Patients with Standards"
--- Including only patients that have been seen after st.stdt
- FROM 
- (SELECT person_source_value FROM person op WHERE EXISTS 
-	(SELECT 1 FROM visit_occurrence v, st 
-	 WHERE v.person_source_value = op.person_source_value AND visit_start_date >= st.stdt) 
-			-- AND datetime_of_birth IS NOT NULL 
-		and D.Year_of_Birth  is NOT NULL 
-			-- AND  D.month_of_Birth is NOT NULL 
-			-- AND  D.Day_of_Birth  is NOT NULL
+CTSA common metrics 2021, OMOP Oracle (needs testing)
+Draft 2021-03-29, rewrite for third revision of output structure 
+Robert Miller, Tufts CTSI 
+Based on criteria from: 
+	https://github.com/ncats/CTSA-Metrics/blob/master/ProposedClicMetricTable.xlsx
+	and "Final Informatics Output 2021.xls" (email distributed) 
 
-  	/* For those using exact OMOP model, replace 
-	AND datetime_of_birth IS NOT NULL 
-	with 
-	AND year_of_birth IS NOT NULL AND month_of_birth IS NOT NULL AND day_of_birth IS NOT NULL 
-	*/
- ) d 
-) num, den 
-UNION
--- Domain Labs: % of unique patient with LOINC as lab valued
-SELECT num.*, den.*, 
-  Round((100.0 * (num."Patients with Standards"/ den."Unique Total Patients")),2) AS "% Standards", 
-  'Not Applicable' AS "Values Present" 
-FROM 
-(SELECT 'Labs as LOINC' AS "Domain", 
-   CAST(COUNT(DISTINCT person_source_value) AS Float) AS "Patients with Standards"
- FROM measurement d JOIN st ON 1=1 
- JOIN omop.concept c ON d.measurement_concept_id = c.concept_id 
-   AND c.vocabulary_id = 'LOINC' 
--- Including only patients that have been seen after st.stdt and only data from that period
- WHERE EXISTS 
-	(SELECT 1 FROM visit_occurrence v, st 
-	 WHERE v.person_source_value = d.person_source_value AND visit_start_date >= st.stdt) 
-	AND measurement_date >= st.stdt
-) num, den 
-UNION
--- Domain Drug: % of unique patient with RxNorm as Medication valued
-SELECT num.*, den.*, 
-  Round((100.0 * (num."Patients with Standards"/ den."Unique Total Patients")),2) AS "% Standards", 
-  'Not Applicable' AS "Values Present" 
-FROM 
-(SELECT 'Drugs as RxNORM' AS "Domain", 
-   CAST(COUNT(DISTINCT person_source_value) AS Float) AS "Patients with Standards"
- FROM drug_exposure d JOIN st ON 1=1 
- JOIN omop.concept c ON d.drug_concept_id = c.concept_id AND c.vocabulary_id = 'RxNorm' 
--- Including only patients that have been seen after st.stdt and only data from that period
- WHERE EXISTS 
-	(SELECT 1 FROM visit_occurrence v, st 
-	 WHERE v.person_source_value = d.person_source_value AND visit_start_date >= st.stdt) 
-	AND drug_exposure_start_date >= st.stdt
-) num, den 
-UNION
--- Domain Condition: % of unique patient with standard value set for condition
-SELECT num.*, den.*, 
-  Round((100.0 * (num."Patients with Standards"/ den."Unique Total Patients")),2) AS "% Standards", 
-  'Not Applicable' AS "Values Present" 
-FROM 
-(SELECT 'Diagnosis as ICD/SNOMED' AS "Domain", 
-   CAST(COUNT(DISTINCT person_source_value) AS Float) AS "Patients with Standards" 
- FROM condition_occurrence p JOIN st ON 1=1 
- LEFT JOIN omop.concept c ON p.condition_source_concept_id = c.concept_id 
-   AND c.vocabulary_id IN ('SNOMED','ICD9CM','ICD10CM') 
- LEFT JOIN omop.concept c2 ON p.condition_concept_id = c2.concept_id 
-   AND c2.vocabulary_id IN ('SNOMED','ICD9CM','ICD10CM') 
- WHERE (c.concept_id IS NOT NULL OR c2.concept_id IS NOT NULL)
--- Including only patients that have been seen after st.stdt and only data from that period
-   AND EXISTS 
-	(SELECT 1 FROM visit_occurrence v, st 
-	 WHERE v.person_source_value = p.person_source_value AND visit_start_date >= st.stdt) 
-	AND condition_start_date >= st.stdt 
-) num, den 
-UNION
--- Domain Procedure: % of unique patient with standard value set for procedure
-SELECT num.*, den.*, 
-  Round((100.0 * (num."Patients with Standards"/ den."Unique Total Patients")),2) AS "% Standards", 
-  'Not Applicable' AS "Values Present" 
-FROM 
-(SELECT 'Procedures as ICD/SNOMED/CPT4' AS "Domain", 
-   CAST(COUNT(DISTINCT person_source_value) AS Float) AS "Patients with Standards"
- FROM procedure_occurrence p JOIN st ON 1=1 
- LEFT JOIN omop.concept c ON p.procedure_source_concept_id = c.concept_id 
-   AND c.vocabulary_id IN ('SNOMED','ICD9Proc','ICD10PCS','CPT4')
-/*	-- CDRN OMOP model doesn't include column procedure_concept_id in site OMOP database, 
-	-- so it is commented out here
-	-- Uncomment the block to use exact OMOP model  
- LEFT JOIN omop.concept c2 ON p.procedure_concept_id = c2.concept_id 
-   AND c2.vocabulary_id IN ('SNOMED','ICD9Proc','ICD10PCS','CPT4') */
- WHERE (c.concept_id IS NOT NULL /* -- see comment above 
-     OR c2.concept_id IS NOT NULL */)
--- Including only patients that have been seen after st.stdt and only data from that period
-   AND EXISTS 
-	(SELECT 1 FROM visit_occurrence v, st 
-	 WHERE v.person_source_value = p.person_source_value AND visit_start_date >= st.stdt) 
-	AND procedure_date >= st.stdt
-) num, den 
-UNION
--- Domain Observations:  Checks for the presents of recorded observations
--- Suggested change: use number and % instead of NULLs
-SELECT 'Observations Present' AS "Domain",  Cnt AS "Patients with Standards", /* or NULL AS ... */
-  den."Unique Total Patients" AS "Unique Total Patients", /* or NULL AS ... */
-  Round((100.0 * (Cnt/den."Unique Total Patients" )),2)  AS  "% Standards", /* or NULL AS ... */
-  CASE 
-	WHEN Cnt = 0 THEN 'No Observation' ELSE 'Observations Present' END AS "Values Present"		
-FROM 
-(SELECT Count(distinct person_source_value) AS Cnt FROM observation p, st 
--- Including only patients that have been seen after st.stdt and only data from that period
- WHERE EXISTS 
-	(SELECT 1 FROM visit_occurrence v, st 
-	 WHERE v.person_source_value = p.person_source_value AND visit_start_date >= st.stdt) 
-	AND observation_date >= st.stdt
-) ob, den 
-UNION
--- Domain Note Text: % of unique patient with note text populated
-/*	-- CDRN OMOP model doesn't include table NOTE, so the whole block is commented out 
-	-- Uncomment the block and comment out the replacement SELECT statement to use exact OMOP model 
-SELECT num.*, den.*, 
-  (100.0 * (num."Patients with Standards"/ den."Unique Total Patients")) AS "% Standards", 
-  'Not Applicable' AS "Values Present" 
-FROM 
-(
- SELECT "Note Text" AS Domain, 
- CAST(COUNT(DISTINCT D.person_id) as Float) AS "Patients with Standards"
- FROM Note D
-) Num, DEN
+Known issues:
+- hardwires uniq_pt_insurance_value_set to NULL as it is unclear how to best qualify insurance providers as 'harmonized' in OMOP 
+
+Structure:
+1-user input
+	nlp solutions **Needs to be edited by user (0=no, 1=yes, NULL = unknown)**
+2-create concept sets
+3-generate metrics 
+
 */
-	SELECT 'Note Text' AS "Domain", 0 AS "Patients with Standards", den.*, 0 AS "% Standards", 
-	  'Not Applicable' AS "Values Present" 
-	FROM den 
-ORDER BY "Domain"
-;
+
+
+
+
+-- Are you using an NLP solution at your site? 
+with nlp_usage as(SELECT @edit_this_or_it_will_error as edit_me --[ 0 = No, 1 = Yes, NULL = unknown]
+ FROM DUAL)
+
+,vital_concepts as (SELECT conc.*
+	FROM CONCEPT_ANCESTOR ca
+	INNER JOIN CONCEPT conc
+	ON ancestor_concept_id IN
+	(
+		3036277
+		,3025315
+		,45876174
+		,1002813
+		,4245997
+		,1004059
+		,4178505
+	)
+	AND ca.descendant_concept_id = conc.concept_id
+	AND conc.standard_concept = 'S'
+ )
+
+,smoking_concepts as (SELECT conc.*
+	FROM CONCEPT_RELATIONSHIP cr 
+	INNER JOIN CONCEPT conc
+	ON cr.concept_id_1 IN
+	(SELECT concept_id
+		FROM CONCEPT
+		  WHERE concept_code in 
+		(
+			'Z87.891'
+			,'F17.20'
+			,'F17.200'
+			, 'F17.201'
+			, 'F17.203'
+			, 'F17.208'
+			, 'F17.209'
+			, 'F17.21'
+			, 'F17.210'
+			, 'F17.211'
+			, 'F17.213'
+			, 'F17.218'
+			, 'F17.219'
+		)
+	 )
+	AND cr.concept_id_2 = conc.concept_id
+	AND conc.standard_concept = 'S'
+
+ )
+
+/*
+  Variable: data_model
+  Acceptable values:  1=PCORNet, 2=OMOP, 3=TriNetX, 4=i2b2/ACT
+*/
+SELECT 'data_model' as variable_name
+	,(SELECT 2 as one_year FROM DUAL) -- 2 = OMOP
+	,(SELECT 2 as five_year FROM DUAL) -- 2 = OMOP
+ FROM DUAL  UNION SELECT 'nlp_any'  variable_name
+	,(SELECT edit_me FROM nlp_usage )  one_year
+	,(SELECT edit_me FROM nlp_usage ) as five_year
+
+  FROM DUAL  UNION SELECT 'total_encounters'  variable_name
+	,(SELECT COUNT(*) 
+		FROM visit_occurrence
+		  WHERE visit_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(*) 
+		FROM visit_occurrence
+		  WHERE visit_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+  FROM DUAL  UNION SELECT 'total_patients'  variable_name
+	,(SELECT COUNT(DISTINCT person_id) 
+		FROM visit_occurrence
+		  WHERE visit_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT person_id) 
+		FROM visit_occurrence
+		  WHERE visit_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+  FROM DUAL  UNION SELECT 'unique_pt_with_age'  variable_name
+	,(SELECT COUNT(DISTINCT per.person_id) 
+		FROM person per
+		INNER JOIN visit_occurrence vis
+		ON per.birth_datetime IS NOT NULL 
+		AND per.person_id = vis.person_id
+		AND vis.visit_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT per.person_id) 
+		FROM person per
+		INNER JOIN visit_occurrence vis
+		ON per.birth_datetime IS NOT NULL 
+		AND per.person_id = vis.person_id
+		AND vis.visit_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+  FROM DUAL  UNION SELECT 'unique_pt_birthdate_in_future'  variable_name
+	,(SELECT COUNT(DISTINCT per.person_id) 
+		FROM person per
+		INNER JOIN visit_occurrence vis
+		ON per.birth_datetime > '31-DEC-2021'
+		AND per.person_id = vis.person_id
+		AND vis.visit_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT per.person_id) 
+		FROM person per
+		INNER JOIN visit_occurrence vis
+		ON per.birth_datetime > '31-DEC-2021'
+		AND per.person_id = vis.person_id
+		AND vis.visit_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+  FROM DUAL  UNION SELECT 'uniq_pt_age_over_120'  variable_name
+	,(SELECT COUNT(DISTINCT per.person_id) 
+		FROM (SELECT per.person_id 
+			FROM person per
+			INNER JOIN death dth 
+			ON per.person_id = dth.person_id
+			AND months_between(dth.DEATH_DATE, per.birth_datetime)/12 > 120
+			-- No DOD, 12/31-2020 - DOB > 120
+			  UNION
+			SELECT person_id 
+			FROM person 
+			WHERE months_between('31-DEC-2020', per.birth_datetime)/12 > 120
+			AND person_id NOT IN (SELECT person_id FROM death )
+		 ) per
+		INNER JOIN visit_occurrence vis
+		ON per.person_id = vis.person_id
+		AND vis.visit_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT per.person_id) 
+		FROM (SELECT per.person_id 
+			FROM person per
+			INNER JOIN death dth 
+			ON per.person_id = dth.person_id
+		AND months_between(dth.DEATH_DATE, per.birth_datetime)/12 > 120
+			-- No DOD, 12/31-2020 - DOB > 120
+			UNION
+			SELECT person_id 
+			FROM person 
+			WHERE months_between('31-DEC-2020', per.birth_datetime)/12 > 120
+			AND person_id NOT IN (SELECT person_id FROM death )
+		 ) per
+		INNER JOIN visit_occurrence vis
+		ON per.person_id = vis.person_id
+		AND vis.visit_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+  FROM DUAL  UNION SELECT 'uniq_pt_with_gender'  variable_name
+	,(SELECT COUNT(DISTINCT per.person_id) 
+		FROM person per
+		INNER JOIN visit_occurrence vis
+		ON per.gender_concept_id IN (
+			8507		-- Male
+			,8532		-- Female
+			,8570		-- Ambiguous
+			,8521		-- Other
+		)
+		AND per.person_id = vis.person_id
+		AND vis.visit_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT per.person_id) 
+		FROM person per
+		INNER JOIN visit_occurrence vis
+		ON per.gender_concept_id IN (
+			8507		-- Male
+			,8532		-- Female
+			,8570		-- Ambiguous
+			,8521		-- Other
+		)
+		AND per.person_id = vis.person_id
+		AND vis.visit_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+  FROM DUAL  UNION SELECT 'uniq_pt_loinc'  variable_name
+	,(SELECT COUNT(DISTINCT per.person_id) 
+		FROM (SELECT person_id
+			FROM measurement meas
+			INNER JOIN concept conc
+			ON conc.vocabulary_id = 'LOINC'
+			AND meas.measurement_concept_id = conc.concept_id
+			AND measurement_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+
+			  UNION 
+			SELECT person_id
+			FROM observation obs
+			INNER JOIN concept conc
+			ON conc.vocabulary_id = 'LOINC'
+			AND obs.observation_concept_id = conc.concept_id
+			AND observation_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+		 ) per
+	 )  one_year
+	,(SELECT COUNT(DISTINCT per.person_id) 
+		FROM (SELECT person_id
+			FROM measurement meas
+			INNER JOIN concept conc
+			ON conc.vocabulary_id = 'LOINC'
+			AND meas.measurement_concept_id = conc.concept_id
+			AND measurement_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+
+			  UNION 
+			SELECT person_id
+			FROM observation obs
+			INNER JOIN concept conc
+			ON conc.vocabulary_id = 'LOINC'
+			AND obs.observation_concept_id = conc.concept_id
+			AND observation_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+		 ) per
+	 ) as five_year
+
+  FROM DUAL  UNION SELECT 'uniq_enc_loinc'  variable_name
+	,(SELECT COUNT(DISTINCT per.visit_occurrence_id) 
+		FROM (SELECT visit_occurrence_id
+			FROM measurement meas
+			INNER JOIN concept conc
+			ON conc.vocabulary_id = 'LOINC'
+			AND meas.measurement_concept_id = conc.concept_id
+			AND measurement_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+
+			  UNION 
+			SELECT visit_occurrence_id
+			FROM observation obs
+			INNER JOIN concept conc
+			ON conc.vocabulary_id = 'LOINC'
+			AND obs.observation_concept_id = conc.concept_id
+			AND observation_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+		 ) per
+	 )  one_year
+	,(SELECT COUNT(DISTINCT per.visit_occurrence_id) 
+		FROM (SELECT visit_occurrence_id
+			FROM measurement meas
+			INNER JOIN concept conc
+			ON conc.vocabulary_id = 'LOINC'
+			AND meas.measurement_concept_id = conc.concept_id
+			AND measurement_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+
+			  UNION 
+			SELECT visit_occurrence_id
+			FROM observation obs
+			INNER JOIN concept conc
+			ON conc.vocabulary_id = 'LOINC'
+			AND obs.observation_concept_id = conc.concept_id
+			AND observation_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+		 ) per
+	 ) as five_year	
+
+
+  FROM DUAL  UNION SELECT 'uniq_enc_med_rxnorm'  variable_name
+	,(SELECT COUNT(DISTINCT drug.visit_occurrence_id) 
+		FROM drug_exposure drug
+		INNER JOIN concept conc
+		ON conc.vocabulary_id in ('RxNorm', 'NDC')
+		AND drug.drug_concept_id = conc.concept_id
+		AND drug_exposure_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT drug.visit_occurrence_id) 
+		FROM drug_exposure drug
+		INNER JOIN concept conc
+		ON conc.vocabulary_id in ('RxNorm', 'NDC')
+		AND drug.drug_concept_id = conc.concept_id
+		AND drug_exposure_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+  FROM DUAL  UNION SELECT 'uniq_pt_med_rxnorm'  variable_name
+	,(SELECT COUNT(DISTINCT drug.person_id) 
+		FROM drug_exposure drug
+		INNER JOIN concept conc
+		ON conc.vocabulary_id in ('RxNorm', 'NDC')
+		AND drug.drug_concept_id = conc.concept_id
+		AND drug_exposure_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT drug.person_id) 
+		FROM drug_exposure drug
+		INNER JOIN concept conc
+		ON conc.vocabulary_id in ('RxNorm', 'NDC')
+		AND drug.drug_concept_id = conc.concept_id
+		AND drug_exposure_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+  FROM DUAL  UNION SELECT 'uniq_pt_icd_dx'  variable_name
+	,(SELECT COUNT(DISTINCT person_id)
+		FROM condition_occurrence
+		  WHERE condition_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id IN ('ICD9CM', 'ICD10CM')
+		 )
+		AND condition_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT person_id)
+		FROM condition_occurrence
+		  WHERE condition_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id IN ('ICD9CM', 'ICD10CM')
+		 )
+		AND condition_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+  FROM DUAL  UNION SELECT 'uniq_enc_icd_dx'  variable_name
+	,(SELECT COUNT(DISTINCT visit_occurrence_id)
+		FROM condition_occurrence
+		  WHERE condition_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id IN ('ICD9CM', 'ICD10CM')
+		 )
+		AND condition_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT visit_occurrence_id)
+		FROM condition_occurrence
+		  WHERE condition_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id IN ('ICD9CM', 'ICD10CM')
+		 )
+		AND condition_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+  FROM DUAL  UNION SELECT 'uniq_pt_snomed_dx'  variable_name
+	,(SELECT COUNT(DISTINCT person_id)
+		FROM condition_occurrence
+		  WHERE condition_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id = 'SNOMED'
+		 )
+		AND condition_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT person_id)
+		FROM condition_occurrence
+		  WHERE condition_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id = 'SNOMED'
+		 )
+		AND condition_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+  FROM DUAL  UNION SELECT 'uniq_enc_snomed_dx'  variable_name
+	,(SELECT COUNT(DISTINCT visit_occurrence_id)
+		FROM condition_occurrence
+		  WHERE condition_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id = 'SNOMED'
+		 )
+		AND condition_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT visit_occurrence_id)
+		FROM condition_occurrence
+		  WHERE condition_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id = 'SNOMED'
+		 )
+		AND condition_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+
+  FROM DUAL  UNION SELECT 'uniq_pt_icd_proc'  variable_name
+	,(SELECT COUNT(DISTINCT person_id)
+		FROM procedure_occurrence
+		  WHERE procedure_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id IN ('ICD10PCS', 'ICD9Proc')
+		 )
+		AND procedure_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT person_id)
+		FROM procedure_occurrence
+		  WHERE procedure_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id IN ('ICD10PCS', 'ICD9Proc')
+		 )
+		AND procedure_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+  FROM DUAL  UNION SELECT 'uniq_enc_icd_proc'  variable_name
+	,(SELECT COUNT(DISTINCT visit_occurrence_id)
+		FROM procedure_occurrence
+		  WHERE procedure_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id IN ('ICD10PCS', 'ICD9Proc')
+		 )
+		AND procedure_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT visit_occurrence_id)
+		FROM procedure_occurrence
+		  WHERE procedure_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id IN ('ICD10PCS', 'ICD9Proc')
+		 )
+		AND procedure_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+
+
+  FROM DUAL  UNION SELECT 'uniq_pt_cpt'  variable_name
+	,(SELECT COUNT(DISTINCT person_id)
+		FROM procedure_occurrence
+		  WHERE procedure_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id IN ('CPT4', 'HCPCS')
+		 )
+		AND procedure_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT person_id)
+		FROM procedure_occurrence
+		  WHERE procedure_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id IN ('CPT4', 'HCPCS')
+		 )
+		AND procedure_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+  FROM DUAL  UNION SELECT 'uniq_enc_cpt'  variable_name
+	,(SELECT COUNT(DISTINCT visit_occurrence_id)
+		FROM procedure_occurrence
+		  WHERE procedure_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id IN ('CPT4', 'HCPCS')
+		 )
+		AND procedure_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT visit_occurrence_id)
+		FROM procedure_occurrence
+		  WHERE procedure_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id IN ('CPT4', 'HCPCS')
+		 )
+		AND procedure_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+
+  FROM DUAL  UNION SELECT 'uniq_pt_snomed_proc'  variable_name
+	,(SELECT COUNT(DISTINCT person_id)
+		FROM procedure_occurrence
+		  WHERE procedure_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id = 'SNOMED'
+		 )
+		AND procedure_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT person_id)
+		FROM procedure_occurrence
+		  WHERE procedure_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id = 'SNOMED'
+		 )
+		AND procedure_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+  FROM DUAL  UNION SELECT 'uniq_enc_snomed_proc'  variable_name
+	,(SELECT COUNT(DISTINCT visit_occurrence_id)
+		FROM procedure_occurrence
+		  WHERE procedure_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id = 'SNOMED'
+		 )
+		AND procedure_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT visit_occurrence_id)
+		FROM procedure_occurrence
+		  WHERE procedure_concept_id IN 
+		(SELECT cr.concept_id_2
+				FROM concept c1
+				INNER JOIN concept_relationship cr
+				ON c1.concept_id = cr.concept_id_1
+				AND relationship_id = 'Maps to'
+				AND c1.vocabulary_id = 'SNOMED'
+		 )
+		AND procedure_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+
+  FROM DUAL  UNION SELECT 'uniq_pt_note'  variable_name
+	,(SELECT COUNT(DISTINCT person_id)
+		FROM note
+		  WHERE note_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT person_id)
+		FROM note
+		  WHERE note_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+  FROM DUAL  UNION SELECT 'uniq_enc_note'  variable_name
+	,(SELECT COUNT(DISTINCT visit_occurrence_id)
+		FROM note
+		  WHERE note_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT visit_occurrence_id)
+		FROM note
+		  WHERE note_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+
+
+/*
+Spec: At least one vital: height, weight, blood pressure, BMI, or temperature
+
+ height
+	3036277
+ , weight
+	3025315
+ , blood pressure
+	45876174
+ , BMI
+	1002813
+	4245997
+ , temperature
+	1004059
+	4178505
+*/
+
+
+-- There isn't a vital sign table in OMOP 
+-- Either need list of concepts to search for or leave null as below 
+  FROM DUAL  UNION SELECT 'uniq_pt_vital_sign'  variable_name
+	,(SELECT COUNT(distinct person_id) 
+		FROM (SELECT person_id 
+			FROM MEASUREMENT
+			    WHERE measurement_concept_id IN 
+			(SELECT concept_id
+				FROM vital_concepts
+				  WHERE domain_id = 'Measurement'
+			 )
+			AND measurement_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+			   UNION 
+			SELECT person_id 
+			FROM OBSERVATION
+			WHERE observation_concept_id IN 
+			(SELECT concept_id
+				FROM vital_concepts
+				  WHERE domain_id = 'Observation'
+			 )
+			AND observation_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+		 ) x
+	 )  one_year
+	,(SELECT COUNT(distinct person_id) 
+		FROM (SELECT person_id 
+			FROM MEASUREMENT
+			    WHERE measurement_concept_id IN 
+			(SELECT concept_id
+				FROM vital_concepts
+				  WHERE domain_id = 'Measurement'
+			 )
+			AND measurement_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+			   UNION 
+			SELECT person_id 
+			FROM OBSERVATION
+			WHERE observation_concept_id IN 
+			(SELECT concept_id
+				FROM vital_concepts
+				  WHERE domain_id = 'Observation'
+			 )
+			AND observation_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+		 ) x
+	 ) as five_year
+
+
+/*
+Smoking Status Codes: Z87.891, F17.20, F17.200, F17.201, F17.203, F17.208, F17.209, F17.21, F17.210, F17.211, F17.213, F17.218, F17.219
+*/
+  FROM DUAL  UNION SELECT 'uniq_pt_smoking'  variable_name
+	,(SELECT COUNT(distinct person_id) 
+		FROM (SELECT person_id 
+			FROM CONDITION_OCCURRENCE
+			    WHERE condition_concept_id IN 
+			(SELECT concept_id
+				FROM smoking_concepts
+				  WHERE domain_id = 'Condition'
+			 )
+			AND condition_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+			   UNION 
+			SELECT person_id 
+			FROM OBSERVATION
+			WHERE observation_concept_id IN 
+			(SELECT concept_id
+				FROM smoking_concepts
+				  WHERE domain_id = 'Observation'
+			 )
+			AND observation_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+		 ) x
+	 )  one_year
+	,(SELECT COUNT(distinct person_id) 
+		FROM (SELECT person_id 
+			FROM CONDITION_OCCURRENCE
+			    WHERE condition_concept_id IN 
+			(SELECT concept_id
+				FROM smoking_concepts
+				  WHERE domain_id = 'Condition'
+			 )
+			AND condition_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+			   UNION 
+			SELECT person_id 
+			FROM OBSERVATION
+			WHERE observation_concept_id IN 
+			(SELECT concept_id
+				FROM smoking_concepts
+				  WHERE domain_id = 'Observation'
+			 )
+			AND observation_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+		 ) x
+	 ) as five_year
+
+
+
+  FROM DUAL  UNION SELECT 'uniq_pt_opioid'  variable_name
+	,(SELECT COUNT(DISTINCT person_id)
+		FROM (SELECT person_id
+			FROM condition_occurrence
+			    WHERE condition_concept_id IN 
+			(SELECT descendant_concept_id
+				FROM concept_ancestor
+				  WHERE ancestor_concept_id = 4032799 --Opioid-induced organic mental disorder
+			 ) 
+			AND condition_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+			   UNION 
+			--"RxNorm (methadone {6813} and descendants, buprenorphine {1819} and descendant TTYs) "
+			SELECT person_id
+			FROM drug_exposure
+			WHERE drug_concept_id IN 
+			(SELECT descendant_concept_id
+				FROM concept_ancestor
+				  WHERE ancestor_concept_id IN (
+					1103640		-- methadone (6813 is the concept code)
+					,1133201	-- buprenorphine (1819 is the concept code)
+				)
+			 ) 
+			AND drug_exposure_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+		 ) x
+	 )  one_year
+	,(SELECT COUNT(DISTINCT person_id)
+		FROM (SELECT person_id
+			FROM condition_occurrence
+			    WHERE condition_concept_id IN 
+			(SELECT descendant_concept_id
+				FROM concept_ancestor
+				  WHERE ancestor_concept_id = 4032799 --Opioid-induced organic mental disorder
+			 ) 
+			AND condition_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+			   UNION 
+			--"RxNorm (methadone {6813} and descendants, buprenorphine {1819} and descendant TTYs) "
+			SELECT person_id
+			FROM drug_exposure
+			WHERE drug_concept_id IN 
+			(SELECT descendant_concept_id
+				FROM concept_ancestor
+				  WHERE ancestor_concept_id IN (
+					1103640		-- methadone (6813 is the concept code)
+					,1133201	-- buprenorphine (1819 is the concept code)
+				)
+			 ) 
+			AND drug_exposure_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+		 ) x
+	 ) as five_year
+
+-- TODO: Better way to calculate the date range overlap?
+
+  FROM DUAL  UNION SELECT 'uniq_pt_any_insurance_value'  variable_name
+	,(SELECT COUNT(DISTINCT person_id)
+		FROM payer_plan_period
+		  WHERE payer_plan_period_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+		OR payer_plan_period_end_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+	 )  one_year
+	,(SELECT COUNT(DISTINCT person_id)
+		FROM payer_plan_period
+		  WHERE payer_plan_period_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+		OR payer_plan_period_end_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+	 ) as five_year
+
+-- NULL as NA. Best approach TBD for OMOP 
+  FROM DUAL   UNION SELECT 'uniq_pt_insurance_value_set'  variable_name
+	,NULL as one_year
+	,NULL as five_year
+
+                                                            FROM DUAL ;
