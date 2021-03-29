@@ -94,6 +94,15 @@ with nlp_usage as(
 
 )
 
+/*
+  Variable: data_model
+  Acceptable values:  1=PCORNet, 2=OMOP, 3=TriNetX, 4=i2b2/ACT
+*/
+SELECT 
+	'data_model' as variable_name
+	,(SELECT 2 as one_year) -- 2 = OMOP
+	,(SELECT 2 as five_year) -- 2 = OMOP
+UNION
 SELECT
 	'nlp_any' as variable_name
 	,(SELECT edit_me FROM nlp_usage) as one_year
