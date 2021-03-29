@@ -99,6 +99,24 @@ SELECT 'data_model' as variable_name
 		FROM visit_occurrence
 		  WHERE visit_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
 	 ) as five_year
+  FROM DUAL  UNION SELECT 'total_pt_gt_12'  variable_name
+	,(SELECT COUNT(DISTINCT per.person_id) 
+		FROM person per
+		INNER JOIN visit_occurrence vis
+		ON per.birth_datetime IS NOT NULL 
+		AND per.person_id = vis.person_id
+		AND vis.visit_start_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
+		AND CAST(vis.visit_start_date AS DATE) - CAST(per.birth_datetime AS DATE) > 12
+	 )  one_year
+	,(SELECT COUNT(DISTINCT per.person_id) 
+		FROM person per
+		INNER JOIN visit_occurrence vis
+		ON per.birth_datetime IS NOT NULL 
+		AND per.person_id = vis.person_id
+		AND vis.visit_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
+		AND CAST(vis.visit_start_date AS DATE) - CAST(per.birth_datetime AS DATE) > 12
+	 ) as five_year
+
 
   FROM DUAL  UNION SELECT 'unique_pt_with_age'  variable_name
 	,(SELECT COUNT(DISTINCT per.person_id) 

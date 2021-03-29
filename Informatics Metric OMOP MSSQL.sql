@@ -135,6 +135,27 @@ SELECT
 		FROM visit_occurrence
 		WHERE visit_start_date BETWEEN '01-01-2016' AND '12-31-2020'
 	) as five_year
+UNION 
+SELECT 
+	'total_pt_gt_12' as variable_name
+	,(
+		SELECT COUNT(DISTINCT per.person_id) 
+		FROM person per
+		INNER JOIN visit_occurrence vis
+		ON per.birth_datetime IS NOT NULL 
+		AND per.person_id = vis.person_id
+		AND vis.visit_start_date BETWEEN '01-01-2020' AND '12-31-2020'
+		AND DATEDIFF(year, per.birth_datetime, vis.visit_start_date) > 12 
+	) as one_year
+	,(
+		SELECT COUNT(DISTINCT per.person_id) 
+		FROM person per
+		INNER JOIN visit_occurrence vis
+		ON per.birth_datetime IS NOT NULL 
+		AND per.person_id = vis.person_id
+		AND vis.visit_start_date BETWEEN '01-01-2016' AND '12-31-2020'
+		AND DATEDIFF(year, per.birth_datetime, vis.visit_start_date) > 12 
+	) as five_year
 
 
 UNION 
