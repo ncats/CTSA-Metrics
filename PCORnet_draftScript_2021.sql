@@ -336,6 +336,16 @@ FROM CONDITION cond
 WHERE cond.CONDITION LIKE 'F11%' and cond.REPORT_DATE between '01-JAN-2016' and '31-DEC-2020'
 )
 
+--data model
+select
+   'data_model' as description,
+   1 as one_year,
+   1 as five_year
+from
+   dual
+   
+UNION
+   
 -- total encounters
 select 
     'total_encounters' as description,
@@ -615,6 +625,16 @@ from
     dual
 
 UNION
+			   
+-- does this data model support nlp
+select 
+    'nlp_any' as description,
+    NULL as one_year,
+    NULL as five_year
+from
+    dual
+
+UNION			   
 
 -- patients with at least one vital sign
 -- NOTE: the spreadsheet only has an encounter version of this variable coded, but the name of the variable has "pt". Should we do both?
@@ -688,4 +708,3 @@ select
 from
     dual
 
--- for patients with CPT code items, need guidance; are we still doing these?
