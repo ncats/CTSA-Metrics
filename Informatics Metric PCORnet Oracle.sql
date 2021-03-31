@@ -368,6 +368,20 @@ from
 
 UNION
 
+-- patients with age > 12
+select 
+    'total_pt_gt_12' as description,
+    (select count(distinct dem.PATID) from ENCOUNTER enc1y JOIN DEMOGRAPHIC dem ON enc1y.PATID = dem.PATID 
+        where enc1y.ENC_TYPE NOT IN ('NI','UN') and enc1y.ADMIT_DATE between '01-JAN-2020' and '31-DEC-2020'
+        and (months_between('31-DEC-2020',dem.BIRTH_DATE)/12) > 12) as one_year,
+    (select count(distinct dem.PATID) from ENCOUNTER enc5y JOIN DEMOGRAPHIC dem ON enc5y.PATID = dem.PATID 
+        where enc5y.ENC_TYPE NOT IN ('NI','UN') and enc5y.ADMIT_DATE between '01-JAN-2016' and '31-DEC-2020'
+        and (months_between('31-DEC-2020',dem.BIRTH_DATE)/12) > 12) as five_year
+from
+    dual
+
+UNION
+
 -- patients for whom age can be calculated
 select 
     'unique_pt_with_age' as description,
@@ -437,6 +451,38 @@ select
         between '01-JAN-2020' and '31-DEC-2020') as one_year,
     (select count(distinct lb5y.PATID) from LAB_RESULT_CM lb5y where lb5y.LAB_LOINC is not null and lb5y.RESULT_DATE
         between '01-JAN-2016' and '31-DEC-2020') as five_year
+from
+    dual
+
+UNION
+
+-- encounters with at least one LOINC
+select 
+    'unique_enc_loinc' as description,
+    (select count(distinct lb1y.ENCOUNTERID) from LAB_RESULT_CM lb1y where lb1y.LAB_LOINC is not null and lb1y.RESULT_DATE
+        between '01-JAN-2020' and '31-DEC-2020') as one_year,
+    (select count(distinct lb5y.ENCOUNTERID) from LAB_RESULT_CM lb5y where lb5y.LAB_LOINC is not null and lb5y.RESULT_DATE
+        between '01-JAN-2016' and '31-DEC-2020') as five_year
+from
+    dual
+
+UNION
+
+-- encounters with at least one rxnorm or ndc
+-- assuming that DISPENSING does not contain medications that are not in PRESCRIBING
+select 
+    'unique_enc_med_rxnorm' as description,
+    (select count(*) from (select med1y.ENCOUNTERID from PRESCRIBING med1y WHERE med1y.RXNORM_CUI is not null and med1y.RX_ORDER_DATE 
+        between '01-JAN-2020' and '31-DEC-2020'
+     UNION
+     select med1yad.ENCOUNTERID from MED_ADMIN med1yad WHERE med1yad.MEDADMIN_TYPE IN ('ND','RX') and med1yad.MEDADMIN_START_DATE 
+        between '01-JAN-2020' and '31-DEC-2020')) as one_year,
+        
+    (select count(*) from (select med5y.ENCOUNTERID from PRESCRIBING med5y WHERE med5y.RXNORM_CUI is not null and med5y.RX_ORDER_DATE 
+        between '01-JAN-2016' and '31-DEC-2020'
+     UNION
+     select med5yad.ENCOUNTERID from MED_ADMIN med5yad WHERE med5yad.MEDADMIN_TYPE IN ('ND','RX') and med5yad.MEDADMIN_START_DATE 
+        between '01-JAN-2016' and '31-DEC-2020')) as five_year
 from
     dual
 
@@ -653,10 +699,10 @@ select
     'uniq_pt_smoking' as description,
     (select count(distinct vit1y.PATID) from VITAL vit1y JOIN DEMOGRAPHIC d ON vit1y.PATID = d.PATID 
         WHERE vit1y.MEASURE_DATE between '01-JAN-2020' and '31-DEC-2020' 
-        and SMOKING is not null and SMOKING not in ('NI','UN') and (months_between(d.BIRTH_DATE,vit1y.MEASURE_DATE)/12) >= 12) as one_year,
+        and SMOKING is not null and SMOKING not in ('NI','UN') and (months_between(d.BIRTH_DATE,vit1y.MEASURE_DATE)/12) > 12) as one_year,
     (select count(distinct vit5y.PATID) from VITAL vit5y JOIN DEMOGRAPHIC d ON vit5y.PATID = d.PATID 
         WHERE vit5y.MEASURE_DATE between '01-JAN-2016' and '31-DEC-2020'
-        and SMOKING is not null and SMOKING not in ('NI','UN') and (months_between(d.BIRTH_DATE,vit5y.MEASURE_DATE)/12) >= 12) as five_year
+        and SMOKING is not null and SMOKING not in ('NI','UN') and (months_between(d.BIRTH_DATE,vit5y.MEASURE_DATE)/12) > 12) as five_year
 from
     dual
 
