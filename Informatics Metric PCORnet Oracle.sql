@@ -683,12 +683,11 @@ from
 UNION			   
 
 -- patients with at least one vital sign
--- NOTE: the spreadsheet only has an encounter version of this variable coded, but the name of the variable has "pt". Should we do both?
 -- will need to be changed when PCORnet drops the VITAL table.
 select 
-    'uniq_pt_vital_sign' as description,
-    (select count(distinct vit1y.PATID) from VITAL vit1y WHERE vit1y.MEASURE_DATE between '01-JAN-2020' and '31-DEC-2020') as one_year,
-    (select count(distinct vit5y.PATID) from VITAL vit5y WHERE vit5y.MEASURE_DATE between '01-JAN-2016' and '31-DEC-2020') as five_year
+    'uniq_enc_vital_sign' as description,
+    (select count(distinct vit1y.ENCOUNTERID) from VITAL vit1y WHERE vit1y.MEASURE_DATE between '01-JAN-2020' and '31-DEC-2020') as one_year,
+    (select count(distinct vit5y.ENCOUNTERID) from VITAL vit5y WHERE vit5y.MEASURE_DATE between '01-JAN-2016' and '31-DEC-2020') as five_year
 from
     dual
 
