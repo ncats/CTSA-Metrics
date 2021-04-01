@@ -74,10 +74,10 @@ with nlp_usage as(SELECT @edit_this_or_it_will_error as edit_me --[ 0 = No, 1 = 
   Acceptable values:  1=PCORNet, 2=OMOP, 3=TriNetX, 4=i2b2/ACT
 */
 SELECT 'data_model' as variable_name
-	,(SELECT 2 as one_year FROM DUAL) -- 2 = OMOP
-	,(SELECT 2 as five_year FROM DUAL) -- 2 = OMOP
+	,(SELECT 2 as one_year FROM DUAL) as one_year -- 2 = OMOP
+	,(SELECT 2 as five_year FROM DUAL) as five_year-- 2 = OMOP
  FROM DUAL  UNION SELECT 'nlp_any'  variable_name
-	,(SELECT edit_me FROM nlp_usage )  one_year
+	,(SELECT edit_me FROM nlp_usage )  as one_year
 	,(SELECT edit_me FROM nlp_usage ) as five_year
 
   FROM DUAL  UNION SELECT 'total_encounters'  variable_name
@@ -622,11 +622,9 @@ Spec: At least one vital: height, weight, blood pressure, BMI, or temperature
 */
 
 
--- There isn't a vital sign table in OMOP 
--- Either need list of concepts to search for or leave null as below 
-  FROM DUAL  UNION SELECT 'uniq_pt_vital_sign'  variable_name
-	,(SELECT COUNT(distinct person_id) 
-		FROM (SELECT person_id 
+  FROM DUAL  UNION SELECT 'uniq_enc_vital_sign'  variable_name
+	,(SELECT COUNT(distinct visit_occurrence_id) 
+		FROM (SELECT visit_occurrence_id 
 			FROM MEASUREMENT
 			    WHERE measurement_concept_id IN 
 			(SELECT concept_id
@@ -635,7 +633,7 @@ Spec: At least one vital: height, weight, blood pressure, BMI, or temperature
 			 )
 			AND measurement_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
 			   UNION 
-			SELECT person_id 
+			SELECT visit_occurrence_id 
 			FROM OBSERVATION
 			WHERE observation_concept_id IN 
 			(SELECT concept_id
@@ -645,8 +643,8 @@ Spec: At least one vital: height, weight, blood pressure, BMI, or temperature
 			AND observation_date BETWEEN '01-JAN-2020' AND '31-DEC-2020'
 		 ) x
 	 )  one_year
-	,(SELECT COUNT(distinct person_id) 
-		FROM (SELECT person_id 
+	,(SELECT COUNT(distinct visit_occurrence_id) 
+		FROM (SELECT visit_occurrence_id 
 			FROM MEASUREMENT
 			    WHERE measurement_concept_id IN 
 			(SELECT concept_id
@@ -655,7 +653,7 @@ Spec: At least one vital: height, weight, blood pressure, BMI, or temperature
 			 )
 			AND measurement_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
 			   UNION 
-			SELECT person_id 
+			SELECT visit_occurrence_id 
 			FROM OBSERVATION
 			WHERE observation_concept_id IN 
 			(SELECT concept_id

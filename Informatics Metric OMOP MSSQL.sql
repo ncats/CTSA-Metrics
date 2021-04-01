@@ -100,8 +100,8 @@ with nlp_usage as(
 */
 SELECT 
 	'data_model' as variable_name
-	,(SELECT 2 as one_year) -- 2 = OMOP
-	,(SELECT 2 as five_year) -- 2 = OMOP
+	,(SELECT 2 as one_year) as one_year -- 2 = OMOP
+	,(SELECT 2 as five_year) as five_year -- 2 = OMOP
 UNION
 SELECT
 	'nlp_any' as variable_name
@@ -772,16 +772,14 @@ Spec: At least one vital: height, weight, blood pressure, BMI, or temperature
 */
 
 
--- There isn't a vital sign table in OMOP 
--- Either need list of concepts to search for or leave null as below 
 UNION 
 SELECT 
-	'uniq_pt_vital_sign' as variable_name
+	'uniq_enc_vital_sign' as variable_name
 	,(
-		SELECT COUNT(distinct person_id) 
+		SELECT COUNT(distinct visit_occurrence_id) 
 		FROM
 		(
-			SELECT person_id 
+			SELECT visit_occurrence_id 
 			FROM MEASUREMENT
 			WHERE measurement_concept_id IN 
 			(
@@ -791,7 +789,7 @@ SELECT
 			)
 			AND measurement_date BETWEEN '01-01-2020' AND '12-31-2020'
 			UNION 
-			SELECT person_id 
+			SELECT visit_occurrence_id 
 			FROM OBSERVATION
 			WHERE observation_concept_id IN 
 			(
@@ -803,10 +801,10 @@ SELECT
 		) x
 	) as one_year
 	,(
-		SELECT COUNT(distinct person_id) 
+		SELECT COUNT(distinct visit_occurrence_id) 
 		FROM
 		(
-			SELECT person_id 
+			SELECT visit_occurrence_id 
 			FROM MEASUREMENT
 			WHERE measurement_concept_id IN 
 			(
@@ -816,7 +814,7 @@ SELECT
 			)
 			AND measurement_date BETWEEN '01-01-2016' AND '12-31-2020'
 			UNION 
-			SELECT person_id 
+			SELECT visit_occurrence_id 
 			FROM OBSERVATION
 			WHERE observation_concept_id IN 
 			(
