@@ -376,7 +376,7 @@ select
         and (months_between(enc1y.ADMIT_DATE,dem.BIRTH_DATE)/12) > 12) as one_year,
     (select count(distinct dem.PATID) from ENCOUNTER enc5y JOIN DEMOGRAPHIC dem ON enc5y.PATID = dem.PATID 
         where enc5y.ENC_TYPE NOT IN ('NI','UN') and enc5y.ADMIT_DATE between '01-JAN-2016' and '31-DEC-2020'
-        and (months_between(enc1y.ADMIT_DATE,dem.BIRTH_DATE)/12) > 12) as five_year
+        and (months_between(enc5y.ADMIT_DATE,dem.BIRTH_DATE)/12) > 12) as five_year
 from
     dual
 
