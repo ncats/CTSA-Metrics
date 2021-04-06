@@ -370,7 +370,7 @@ select
         and (datediff(day,dem.BIRTH_DATE,enc1y.ADMIT_DATE)/365.25) > 12) as one_year,
     (select count(distinct dem.PATID) from ENCOUNTER enc5y JOIN DEMOGRAPHIC dem ON enc5y.PATID = dem.PATID 
         where enc5y.ENC_TYPE NOT IN ('NI','UN') and enc5y.ADMIT_DATE between '1/1/2016' and '12/31/2020'
-        and (datediff(day,dem.BIRTH_DATE,enc1y.ADMIT_DATE)/365.25) > 12) as five_year
+        and (datediff(day,dem.BIRTH_DATE,enc5y.ADMIT_DATE)/365.25) > 12) as five_year
 
 UNION
 
