@@ -53,7 +53,7 @@ SELECT
 	'data_model' as variable_name
 	,'4' as one_year -- 4 = i2b2/ACT
 	,'4' as five_year -- 4 = i2b2/ACT
-FROM dual;
+;
 
 --Edit this for your site 
 --Answers '0' your site does not have NLP /Notes capability, '1' your site does have NLP / Notes does  have NLP /Notes capability
@@ -62,7 +62,7 @@ SELECT
 	'nlp_any' as variable_name
 	,'0' as one_year
 	,'0' as five_year
-FROM dual;
+;
    
 -- Unique ENCOUNTERS 
 INSERT INTO CTSA_CLIC_METRIC
