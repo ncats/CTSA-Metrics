@@ -59,13 +59,15 @@ SELECT
 ;
 
 --Edit this for your site 
---Answers '0' your site does not have NLP /Notes capability, '1' your site does have NLP / Notes does  have NLP /Notes capability
+--change the edit_this_for_your_site to '0', '1' or null
+-- this will error out if not modified
+--Answers '0' your site does not have NLP /Notes capability, '1' your site does have NLP / Notes does  have NLP /Notes capability NULL if the model does not support  NLP
 INSERT INTO #CTSA_CLIC_METRIC
 SELECT
 	'nlp_any' as variable_name
-	,'0' as one_year
-	,'0' as five_year
-;
+	, edit_this_for_your_site as one_year
+	, edit_this_for_your_site as five_year
+FROM dual;
    
 -- Unique ENCOUNTERS 
 INSERT INTO #CTSA_CLIC_METRIC
