@@ -384,7 +384,7 @@ UNION
 
 -- patients for whom age can be calculated
 select 
-    'unique_pt_with_age' as description,
+    'uniq_pt_with_age' as description,
     (select count(distinct dem.PATID) from ENCOUNTER enc1y JOIN DEMOGRAPHIC dem ON enc1y.PATID = dem.PATID 
         where enc1y.ENC_TYPE NOT IN ('NI','UN') and enc1y.ADMIT_DATE between '01-JAN-2020' and '31-DEC-2020'
         and dem.BIRTH_DATE is not null) as one_year,
@@ -398,7 +398,7 @@ UNION
 
 -- patients with age < 0
 select 
-    'unique_pt_birthdate_in_future' as description,
+    'uniq_pt_birthdate_in_future' as description,
     (select count(distinct dem.PATID) from ENCOUNTER enc1y JOIN DEMOGRAPHIC dem ON enc1y.PATID = dem.PATID 
         where enc1y.ENC_TYPE NOT IN ('NI','UN') and enc1y.ADMIT_DATE between '01-JAN-2020' and '31-DEC-2020'
         and dem.BIRTH_DATE > '31-DEC-2021') as one_year,
@@ -412,7 +412,7 @@ UNION
 
 -- patients with age > 120 
 select 
-    'unique_pt_age_over_120' as description,
+    'uniq_pt_age_over_120' as description,
     (select count(distinct dem.PATID) from ENCOUNTER enc1y 
         JOIN DEMOGRAPHIC dem ON enc1y.PATID = dem.PATID 
         LEFT JOIN DEATH dt ON enc1y.PATID = dt.PATID
@@ -432,7 +432,7 @@ UNION
 
 -- patients with known gender
 select 
-    'unique_pt_with_gender' as description,
+    'uniq_pt_with_gender' as description,
     (select count(distinct dem.PATID) from ENCOUNTER enc1y JOIN DEMOGRAPHIC dem ON enc1y.PATID = dem.PATID 
         where enc1y.ENC_TYPE NOT IN ('NI','UN') and enc1y.ADMIT_DATE between '01-JAN-2020' and '31-DEC-2020'
         and dem.SEX NOT IN ('NI','UN') and dem.SEX is not null) as one_year,
@@ -446,7 +446,7 @@ UNION
 
 -- patients with at least one LOINC
 select 
-    'unique_pt_loinc' as description,
+    'uniq_pt_loinc' as description,
     (select count(distinct lb1y.PATID) from LAB_RESULT_CM lb1y where lb1y.LAB_LOINC is not null and lb1y.RESULT_DATE
         between '01-JAN-2020' and '31-DEC-2020') as one_year,
     (select count(distinct lb5y.PATID) from LAB_RESULT_CM lb5y where lb5y.LAB_LOINC is not null and lb5y.RESULT_DATE
@@ -458,7 +458,7 @@ UNION
 
 -- encounters with at least one LOINC
 select 
-    'unique_enc_loinc' as description,
+    'uniq_enc_loinc' as description,
     (select count(distinct lb1y.ENCOUNTERID) from LAB_RESULT_CM lb1y where lb1y.LAB_LOINC is not null and lb1y.RESULT_DATE
         between '01-JAN-2020' and '31-DEC-2020') as one_year,
     (select count(distinct lb5y.ENCOUNTERID) from LAB_RESULT_CM lb5y where lb5y.LAB_LOINC is not null and lb5y.RESULT_DATE
@@ -471,7 +471,7 @@ UNION
 -- encounters with at least one rxnorm or ndc
 -- assuming that DISPENSING does not contain medications that are not in PRESCRIBING
 select 
-    'unique_enc_med_rxnorm' as description,
+    'uniq_enc_med_rxnorm' as description,
     (select count(*) from (select med1y.ENCOUNTERID from PRESCRIBING med1y WHERE med1y.RXNORM_CUI is not null and med1y.RX_ORDER_DATE 
         between '01-JAN-2020' and '31-DEC-2020'
      UNION
@@ -491,7 +491,7 @@ UNION
 -- patients with at least one rxnorm or ndc
 -- assuming that DISPENSING does not contain medications that are not in PRESCRIBING
 select 
-    'unique_pt_med_rxnorm' as description,
+    'uniq_pt_med_rxnorm' as description,
     (select count(*) from (select med1y.PATID from PRESCRIBING med1y WHERE med1y.RXNORM_CUI is not null and med1y.RX_ORDER_DATE 
         between '01-JAN-2020' and '31-DEC-2020'
      UNION
@@ -510,7 +510,7 @@ UNION
 
 -- patients with at least one ICD dx code
 select 
-    'unique_pt_icd_dx' as description,
+    'uniq_pt_icd_dx' as description,
     (select count(*) from (select dx1y.PATID from DIAGNOSIS dx1y WHERE dx1y.DX_TYPE IN ('09','10') and dx1y.ADMIT_DATE 
         between '01-JAN-2020' and '31-DEC-2020'
      UNION
@@ -529,7 +529,7 @@ UNION
 
 -- encounters with at least one ICD dx code
 select 
-    'unique_enc_icd_dx' as description,
+    'uniq_enc_icd_dx' as description,
     (select count(*) from (select dx1y.ENCOUNTERID from DIAGNOSIS dx1y WHERE dx1y.DX_TYPE IN ('09','10') and dx1y.ADMIT_DATE 
         between '01-JAN-2020' and '31-DEC-2020'
      UNION
@@ -548,7 +548,7 @@ UNION
 
 -- patients with at least one SNOMED dx code
 select 
-    'unique_pt_snomed_dx' as description,
+    'uniq_pt_snomed_dx' as description,
     (select count(*) from (select dx1y.PATID from DIAGNOSIS dx1y WHERE dx1y.DX_TYPE = 'SM' and dx1y.ADMIT_DATE 
         between '01-JAN-2020' and '31-DEC-2020'
      UNION
@@ -567,7 +567,7 @@ UNION
 
 -- encounters with at least one SNOMED dx code
 select 
-    'unique_enc_snomed_dx' as description,
+    'uniq_enc_snomed_dx' as description,
     (select count(*) from (select dx1y.ENCOUNTERID from DIAGNOSIS dx1y WHERE dx1y.DX_TYPE = 'SM' and dx1y.ADMIT_DATE 
         between '01-JAN-2020' and '31-DEC-2020'
      UNION
