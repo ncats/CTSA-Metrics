@@ -214,7 +214,7 @@ SELECT
 
 UNION DISTINCT 
 SELECT 
-	'unique_pt_with_age' as variable_name
+	'uniq_pt_with_age' as variable_name
 	,(
 		SELECT COUNT(DISTINCT per.person_id) 
 		FROM  [ADD YOUR SCHEMA HERE].person per
@@ -234,7 +234,7 @@ SELECT
 
 UNION DISTINCT 
 SELECT 
-	'unique_pt_birthdate_in_future' as variable_name
+	'uniq_pt_birthdate_in_future' as variable_name
 	,(
 		SELECT COUNT(DISTINCT per.person_id) 
 		FROM  [ADD YOUR SCHEMA HERE].person per
