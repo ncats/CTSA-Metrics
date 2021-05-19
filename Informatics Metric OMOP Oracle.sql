@@ -118,7 +118,7 @@ SELECT 'data_model' as variable_name
 	 ) as five_year
 
 
-  FROM DUAL  UNION SELECT 'unique_pt_with_age'  variable_name
+  FROM DUAL  UNION SELECT 'uniq_pt_with_age'  variable_name
 	,(SELECT COUNT(DISTINCT per.person_id) 
 		FROM person per
 		INNER JOIN visit_occurrence vis
@@ -134,7 +134,7 @@ SELECT 'data_model' as variable_name
 		AND vis.visit_start_date BETWEEN '01-JAN-2016' AND '31-DEC-2020'
 	 ) as five_year
 
-  FROM DUAL  UNION SELECT 'unique_pt_birthdate_in_future'  variable_name
+  FROM DUAL  UNION SELECT 'uniq_pt_birthdate_in_future'  variable_name
 	,(SELECT COUNT(DISTINCT per.person_id) 
 		FROM person per
 		INNER JOIN visit_occurrence vis
