@@ -145,6 +145,7 @@ with nlp_usage as(
 		)
 	)
 	AND conc.standard_concept = 'S'
+	AND cr.relationship_id = 'Maps to'
 
 )
 

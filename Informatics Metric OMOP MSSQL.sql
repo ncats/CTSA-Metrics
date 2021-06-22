@@ -91,6 +91,7 @@ with nlp_usage as(
 	)
 	AND cr.concept_id_2 = conc.concept_id
 	AND conc.standard_concept = 'S'
+	AND cr.relationship_id = 'Maps to'
 
 )
 

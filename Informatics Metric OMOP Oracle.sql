@@ -66,6 +66,7 @@ with nlp_usage as(SELECT @edit_this_or_it_will_error as edit_me --[ 0 = No, 1 = 
 	 )
 	AND cr.concept_id_2 = conc.concept_id
 	AND conc.standard_concept = 'S'
+	AND cr.relationship_id = 'Maps to'
 
  )
 
