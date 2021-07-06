@@ -12,7 +12,7 @@ The purpose of this common metric is to increase interoperability of data across
 This metric will evolve over time to enhance the completeness of the research data warehouses across the CTSA Program consortium and incorporate additional types of data within warehouses as the CTSA Program, in collaboration with the iEC, finds useful and appropriate.
 
 ## Metric
-The data models approved for this metric by the Informatics Enterprise Committee (iEC) are: OMOP, PCORnet, i2b2/ACT (or other i2b2 data models), and TriNetX. Data is to be collected for both one- and five-year periods. 
+The data models approved for this metric by the Informatics Enterprise Committee (iEC) are: OMOP, PCORnet, i2b2/ACT (or other i2b2 data models), and TriNetX. Data is to be collected for both one- and five-year periods. **The metric output is described in 'Informatics Output for 2020 Data.csv'**
 The majority of the domains for this metric require information at both the patient and encounter level. Denominators for these calculations include:
 1.	Total number of unique patients in the data warehouse
 2.	Total number of unique encounters in the data warehouse
