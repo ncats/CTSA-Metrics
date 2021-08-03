@@ -456,13 +456,13 @@ select
         between '1/1/2020' and '12/31/2020'
      UNION
      select med1yad.ENCOUNTERID from MED_ADMIN med1yad WHERE med1yad.MEDADMIN_TYPE IN ('ND','RX') and med1yad.MEDADMIN_START_DATE 
-        between '1/1/2020' and '12/31/2020')) as one_year,
+        between '1/1/2020' and '12/31/2020') subq) as one_year,
         
     (select count(*) from (select med5y.ENCOUNTERID from PRESCRIBING med5y WHERE med5y.RXNORM_CUI is not null and med5y.RX_ORDER_DATE 
         between '1/1/2016' and '12/31/2020'
      UNION
      select med5yad.ENCOUNTERID from MED_ADMIN med5yad WHERE med5yad.MEDADMIN_TYPE IN ('ND','RX') and med5yad.MEDADMIN_START_DATE 
-        between '1/1/2016' and '12/31/2020')) as five_year
+        between '1/1/2016' and '12/31/2020') subq) as five_year
 
 UNION
 
@@ -474,13 +474,13 @@ select
         between '1/1/2020' and '12/31/2020'
      UNION
      select med1yad.PATID from MED_ADMIN med1yad WHERE med1yad.MEDADMIN_TYPE IN ('ND','RX') and med1yad.MEDADMIN_START_DATE 
-        between '1/1/2020' and '12/31/2020')) as one_year,
+        between '1/1/2020' and '12/31/2020') subq) as one_year,
         
     (select count(*) from (select med5y.PATID from PRESCRIBING med5y WHERE med5y.RXNORM_CUI is not null and med5y.RX_ORDER_DATE 
         between '1/1/2016' and '12/31/2020'
      UNION
      select med5yad.PATID from MED_ADMIN med5yad WHERE med5yad.MEDADMIN_TYPE IN ('ND','RX') and med5yad.MEDADMIN_START_DATE 
-        between '1/1/2016' and '12/31/2020')) as five_year
+        between '1/1/2016' and '12/31/2020') subq) as five_year
 
 UNION
 
@@ -491,13 +491,13 @@ select
         between '1/1/2020' and '12/31/2020'
      UNION
      select con1y.PATID from CONDITION con1y WHERE con1y.CONDITION_TYPE IN ('09','10') and con1y.REPORT_DATE 
-        between '1/1/2020' and '12/31/2020')) as one_year,
+        between '1/1/2020' and '12/31/2020') subq) as one_year,
         
     (select count(*) from (select dx5y.PATID from DIAGNOSIS dx5y WHERE dx5y.DX_TYPE IN ('09','10') and dx5y.ADMIT_DATE 
         between '1/1/2016' and '12/31/2020'
      UNION
      select con5y.PATID from CONDITION con5y WHERE con5y.CONDITION_TYPE IN ('09','10') and con5y.REPORT_DATE 
-        between '1/1/2016' and '12/31/2020')) as five_year
+        between '1/1/2016' and '12/31/2020') subq) as five_year
 
 UNION
 
@@ -508,13 +508,13 @@ select
         between '1/1/2020' and '12/31/2020'
      UNION
      select con1y.ENCOUNTERID from CONDITION con1y WHERE con1y.CONDITION_TYPE IN ('09','10') and con1y.REPORT_DATE 
-        between '1/1/2020' and '12/31/2020')) as one_year,
+        between '1/1/2020' and '12/31/2020') subq) as one_year,
         
     (select count(*) from (select dx5y.ENCOUNTERID from DIAGNOSIS dx5y WHERE dx5y.DX_TYPE IN ('09','10') and dx5y.ADMIT_DATE 
         between '1/1/2016' and '12/31/2020'
      UNION
      select con5y.ENCOUNTERID from CONDITION con5y WHERE con5y.CONDITION_TYPE IN ('09','10') and con5y.REPORT_DATE 
-        between '1/1/2016' and '12/31/2020')) as five_year
+        between '1/1/2016' and '12/31/2020') subq) as five_year
 
 UNION
 
@@ -525,13 +525,13 @@ select
         between '1/1/2020' and '12/31/2020'
      UNION
      select con1y.PATID from CONDITION con1y WHERE con1y.CONDITION_TYPE = 'SM' and con1y.REPORT_DATE 
-        between '1/1/2020' and '12/31/2020')) as one_year,
+        between '1/1/2020' and '12/31/2020') subq) as one_year,
         
     (select count(*) from (select dx5y.PATID from DIAGNOSIS dx5y WHERE dx5y.DX_TYPE = 'SM' and dx5y.ADMIT_DATE 
         between '1/1/2016' and '12/31/2020'
      UNION
      select con5y.PATID from CONDITION con5y WHERE con5y.CONDITION_TYPE = 'SM' and con5y.REPORT_DATE 
-        between '1/1/2016' and '12/31/2020')) as five_year
+        between '1/1/2016' and '12/31/2020') subq) as five_year
 
 UNION
 
@@ -542,13 +542,13 @@ select
         between '1/1/2020' and '12/31/2020'
      UNION
      select con1y.ENCOUNTERID from CONDITION con1y WHERE con1y.CONDITION_TYPE = 'SM' and con1y.REPORT_DATE 
-        between '1/1/2020' and '12/31/2020')) as one_year,
+        between '1/1/2020' and '12/31/2020') subq) as one_year,
         
     (select count(*) from (select dx5y.ENCOUNTERID from DIAGNOSIS dx5y WHERE dx5y.DX_TYPE = 'SM' and dx5y.ADMIT_DATE 
         between '1/1/2016' and '12/31/2020'
      UNION
      select con5y.ENCOUNTERID from CONDITION con5y WHERE con5y.CONDITION_TYPE = 'SM' and con5y.REPORT_DATE 
-        between '1/1/2016' and '12/31/2020')) as five_year
+        between '1/1/2016' and '12/31/2020') subq) as five_year
 
 UNION
 
