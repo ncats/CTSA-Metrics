@@ -216,7 +216,7 @@ SELECT
 			UNION
 			SELECT person_id 
 			FROM person 
-			WHERE DATE_PART('year', per.birth_datetime) < 1900
+			WHERE DATE_PART('year', birth_datetime) < 1900
 			AND person_id NOT IN (SELECT person_id FROM death)
 		) per
 		INNER JOIN visit_occurrence vis
@@ -237,7 +237,7 @@ SELECT
 			UNION
 			SELECT person_id 
 			FROM person 
-			WHERE DATE_PART('year', per.birth_datetime) < 1900
+			WHERE DATE_PART('year', birth_datetime) < 1900
 			AND person_id NOT IN (SELECT person_id FROM death)
 		) per
 		INNER JOIN visit_occurrence vis
