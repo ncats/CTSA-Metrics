@@ -1,0 +1,60 @@
+CONCEPT_CD	UMLS_NAME	OMOP_CONCEPT_NAME	NS_CONCEPT_ID	S_CONCEPT_ID
+ICD9CM:174.9	Malignant neoplasm of breast (female), unspecified	Primary malignant neoplasm of female breast	44824029	137809
+ICD9CM:244.9	Unspecified acquired hypothyroidism	Acquired hypothyroidism	44828786	138384
+ICD9CM:250.00	Diabetes mellitus without mention of complication, type II or unspecified type, not stated as uncontrolled	Type 2 diabetes mellitus without complication	44836914	4193704
+ICD9CM:268.9	Unspecified vitamin D deficiency	Vitamin D deficiency	44829893	436070
+ICD9CM:272.0	Pure hypercholesterolemia	Pure hypercholesterolemia	44834564	437827
+ICD9CM:272.4	Other and unspecified hyperlipidemia	Hyperlipidemia	44827629	432867
+ICD9CM:278.00	Obesity, unspecified	Obesity	44833387	433736
+ICD9CM:285.9	Anemia, unspecified	Anemia	44825282	439777
+ICD9CM:300.00	Anxiety state, unspecified	Anxiety state	44832239	4113821
+ICD9CM:305.1	Tobacco use disorder	Tobacco dependence syndrome	44831104	437264
+ICD9CM:311	Depressive disorder, not elsewhere classified	Depressive disorder	44833421	440383
+ICD9CM:327.23	Obstructive sleep apnea (adult)(pediatric)	Obstructive sleep apnea syndrome	44825323	442588
+ICD9CM:401.1	Benign essential hypertension	Benign essential hypertension	44834715	312648
+ICD9CM:401.9	Unspecified essential hypertension	Essential hypertension	44821949	320128
+ICD9CM:414.00	Coronary atherosclerosis of unspecified type of vessel, native or graft	Coronary atherosclerosis	44835932	40481919
+ICD9CM:414.01	Coronary atherosclerosis of native coronary artery	Coronary arteriosclerosis	44830080	317576
+ICD9CM:427.31	Atrial fibrillation	Atrial fibrillation	44821957	313217
+ICD9CM:428.0	Congestive heart failure, unspecified	Congestive heart failure	44826642	319835
+ICD9CM:462	Acute pharyngitis	Acute pharyngitis	44833596	25297
+ICD9CM:465.9	Acute upper respiratory infections of unspecified site	Acute upper respiratory infection	44834764	257011
+ICD9CM:477.9	Allergic rhinitis, cause unspecified	Allergic rhinitis	44835974	257007
+ICD9CM:493.90	Asthma, unspecified type, unspecified	Asthma	44821988	317009
+ICD9CM:496	Chronic airway obstruction, not elsewhere classified	Chronic obstructive lung disease	44829013	255573
+ICD9CM:530.81	Esophageal reflux	Gastroesophageal reflux disease	44822019	318800
+ICD9CM:599.0	Urinary tract infection, site not specified	Urinary tract infectious disease	44820980	81902
+ICD9CM:715.90	Osteoarthrosis, unspecified whether generalized or localized, site unspecified	Osteoarthritis	44831489	80180
+ICD9CM:719.46	Pain in joint, lower leg	Knee pain	44831507	4150062
+ICD9CM:724.2	Lumbago	Low back pain	44819973	194133
+ICD9CM:724.5	Backache, unspecified	Backache	44825708	134736
+ICD9CM:729.1	Myalgia and myositis, unspecified	Disorder of muscle	44831524	137275
+ICD9CM:729.5	Pain in limb	Pain in limb	44822228	138525
+ICD9CM:733.00	Osteoporosis, unspecified	Osteoporosis	44822235	80502
+ICD9CM:780.79	Other malaise and fatigue	Malaise	44823445	4272240
+ICD9CM:784.0	Headache	Headache	44836293	378253
+ICD9CM:786.05	Shortness of breath	Dyspnea	44824625	312437
+ICD9CM:786.2	Cough	Cough	44828154	254761
+ICD9CM:786.50	Chest pain, unspecified	Chest pain	44825809	77670
+ICD9CM:789.00	Abdominal pain, unspecified site	Abdominal pain	44823455	200219
+ICD9CM:V03.82	Other specified vaccinations against streptococcus pneumoniae [pneumococcus]	Requires vaccination	44824937	37109774
+ICD9CM:V04.81	Need for prophylactic vaccination and inoculation against influenza	Requires influenza virus vaccination	44837741	44784283
+ICD9CM:V06.1	Need for prophylactic vaccination and inoculation against diphtheria-tetanus-pertussis, combined [DTP] [DTaP]	Requires diphtheria, tetanus and pertussis vaccination	44827298	45766222
+ICD9CM:V10.3	Personal history of malignant neoplasm of breast	History of malignant neoplasm of breast	44829584	4324190
+ICD9CM:V20.2	Routine infant or child health check	Child examination	44835440	4088016
+ICD9CM:V22.0	Supervision of normal first pregnancy	Finding related to pregnancy	44830764	444094
+ICD9CM:V22.0	Supervision of normal first pregnancy	Routine antenatal care	44830764	4047564
+ICD9CM:V22.1	Supervision of other normal pregnancy	Finding related to pregnancy	44829618	444094
+ICD9CM:V22.1	Supervision of other normal pregnancy	Routine antenatal care	44829618	4047564
+ICD9CM:V43.3	Heart valve replaced by other means	Past history of procedure	44829635	4215685
+ICD9CM:V45.89	Other postprocedural status	Postprocedural state finding	44830794	444239
+ICD9CM:V54.89	Other orthopedic aftercare	Follow-up orthopedic assessment	44834301	4149299
+ICD9CM:V58.0	Encounter for radiotherapy	Radiation therapy procedure or service	44828568	4205728
+ICD9CM:V58.11	Encounter for antineoplastic chemotherapy	Patient encounter procedure	44830820	4203722
+ICD9CM:V58.61	Long-term (current) use of anticoagulants	Long-term current use of anticoagulant	44831974	46273937
+ICD9CM:V58.69	Long-term (current) use of other medications	Long-term drug therapy	44828573	4141759
+ICD9CM:V67.09	Follow-up examination, following other surgery	Postoperative care	44827396	4046550
+ICD9CM:V70.0	Routine general medical examination at a health care facility	General examination of patient	44826243	4036803
+ICD9CM:V72.31	Routine gynecological examination	Routine gynecologic examination	44828600	45773385
+ICD9CM:V76.12	Other screening mammogram	Screening mammography	44836711	4077697
+ICD9CM:V76.2	Screening for malignant neoplasms of cervix	Screening for malignant neoplasm of cervix	44826258	4062484

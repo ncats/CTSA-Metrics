@@ -1,0 +1,66 @@
+CONCEPT_CD	UMLS_NAME	OMOP_CONCEPT_NAME	NS_CONCEPT_ID	S_CONCEPT_ID
+HCPCS:A7003	Administration set, with small volume nonfiltered pneumatic nebulizer, disposable	Administration set, with small volume nonfiltered pneumatic nebulizer, disposable	2615237	2615237
+HCPCS:A9585	Injection, gadobutrol, 0.1 ml	gadobutrol Injectable Solution	40664904	41267389
+HCPCS:A9999	Miscellaneous dme supply or accessory, not otherwise specified	Miscellaneous dme supply or accessory, not otherwise specified	2615407	2615407
+HCPCS:E1399	Durable medical equipment, miscellaneous	Durable medical equipment, miscellaneous	2616955	2616955
+HCPCS:G0008	Administration of influenza virus vaccine	Administration of influenza vaccine	2617177	4313306
+HCPCS:G0009	Administration of pneumococcal vaccine	pneumococcal vaccine, unspecified formulation	2617178	40213202
+HCPCS:G0105	Colorectal cancer screening; colonoscopy on individual at high risk	Colorectal cancer screening; colonoscopy on individual at high risk	2617208	2617208
+HCPCS:G0121	Colorectal cancer screening; colonoscopy on individual not meeting criteria for high risk	Colorectal cancer screening; colonoscopy on individual not meeting criteria for high risk	2617223	2617223
+HCPCS:G0378	Hospital observation service, per hour	Hospital observation service, per hour	2617452	2617452
+HCPCS:G0444	Annual depression screening, 15 minutes	Annual depression screening, 15 minutes	40664726	40664726
+HCPCS:J0131	Injection, acetaminophen, 10 mg	Acetaminophen 10 MG	40664807	40721643
+HCPCS:J0133	Injection, acyclovir, 5 mg	acyclovir Injection	2718220	35606520
+HCPCS:J0171	Injection, adrenalin, epinephrine, 0.1 mg	epinephrine 0.1 MG	40664582	19101883
+HCPCS:J0461	Injection, atropine sulfate, 0.01 mg	Atropine 0.0097 MG	40660485	44092214
+HCPCS:J0583	Injection, bivalirudin, 1 mg	bivalirudin Injectable Solution	2718275	40862035
+HCPCS:J0585	Injection, onabotulinumtoxina, 1 unit	botulinum toxin type A Injection	2718276	35605867
+HCPCS:J0690	Injection, cefazolin sodium, 500 mg	cefazolin 500 MG Injection	2718292	46287340
+HCPCS:J0692	Injection, cefepime hydrochloride, 500 mg	cefepime 500 MG Injectable Solution	2718293	43034646
+HCPCS:J0712	Injection, ceftaroline fosamil, 10 mg	ceftaroline Injection	40664626	21125185
+HCPCS:J0878	Injection, daptomycin, 1 mg	daptomycin Injection	2718321	35605612
+HCPCS:J1030	Injection, methylprednisolone acetate, 40 mg	methylprednisolone 40 MG Injection	2718335	1506430
+HCPCS:J1040	Injection, methylprednisolone acetate, 80 mg	methylprednisolone Injection	2718336	35606532
+HCPCS:J1050	Injection, medroxyprogesterone acetate, 1 mg	medroxyprogesterone Injection	43533213	35604745
+HCPCS:J1100	Injection, dexamethasone sodium phosphate, 1 mg	dexamethasone 1 MG	2718347	1518606
+HCPCS:J1442	Injection, filgrastim (g-csf), excludes biosimilars, 1 microgram	Filgrastim Injectable Solution	44786559	36880816
+HCPCS:J1642	Injection, heparin sodium, (heparin lock flush), per 10 units	heparin Injectable Solution	2718427	1718370
+HCPCS:J1644	Injection, heparin sodium, per 1000 units	heparin Injectable Solution	2718428	1718370
+HCPCS:J1650	Injection, enoxaparin sodium, 10 mg	Enoxaparin Injection	2718430	36882716
+HCPCS:J1756	Injection, iron sucrose, 1 mg	iron sucrose Injection	2718450	35605702
+HCPCS:J1815	Injection, insulin, per 5 units	Injection, insulin, per 5 units	2718458	2718458
+HCPCS:J1953	Injection, levetiracetam, 10 mg	Levetiracetam 10 MG	2718474	21075707
+HCPCS:J2001	Injection, lidocaine hcl for intravenous infusion, 10 mg	lidocaine 10 MG	2718483	19110450
+HCPCS:J2185	Injection, meropenem, 100 mg	meropenem Injection	2718491	35606000
+HCPCS:J2248	Injection, micafungin sodium, 1 mg	micafungin Injection	2718494	35606010
+HCPCS:J2250	Injection, midazolam hydrochloride, per 1 mg	midazolam Injectable Solution	2718495	40064205
+HCPCS:J2370	Injection, phenylephrine hcl, up to 1 ml	phenylephrine Injectable Solution	2718519	40074086
+HCPCS:J2405	Injection, ondansetron hydrochloride, per 1 mg	ondansetron Injection	2718521	35605480
+HCPCS:J2543	Injection, piperacillin sodium/tazobactam sodium, 1 gram/0.125 grams (1.125 grams)	piperacillin / tazobactam Injectable Solution	2718539	40077118
+HCPCS:J2704	Injection, propofol, 10 mg	propofol 10 MG Injectable Solution	45890803	35864285
+HCPCS:J2710	Injection, neostigmine methylsulfate, up to 0.5 mg	Neostigmine Injection	2718552	36894423
+HCPCS:J2795	Injection, ropivacaine hydrochloride, 1 mg	ropivacaine Injection	2718569	35606268
+HCPCS:J3010	Injection, fentanyl citrate, 0.1 mg	fentanyl 0.1 MG	2718593	1154186
+HCPCS:J3301	Injection, triamcinolone acetonide, not otherwise specified, 10 mg	Triamcinolone 10 MG	2718617	40950844
+HCPCS:J3420	Injection, vitamin b-12 cyanocobalamin, up to 1000 mcg	Vitamin B 12 1 MG Injectable Solution	2718637	40836918
+HCPCS:J3475	Injection, magnesium sulfate, per 500 mg	Magnesium Sulfate 500 MG	2718645	21062401
+HCPCS:J3480	Injection, potassium chloride, per 2 meq	potassium chloride Injection	2718646	1718692
+HCPCS:J3490	Unclassified drugs	Unclassified drugs	2718651	2718651
+HCPCS:J7030	Infusion, normal saline solution , 1000 cc	Sodium Chloride Injectable Suspension	2718657	36885577
+HCPCS:J7185	Injection, factor viii (antihemophilic factor, recombinant) (xyntha), per i.u.	antihemophilic factor, human recombinant residues 743-1636 deleted 1 UNT Injection [Xyntha]	40663971	35603169
+HCPCS:J7187	Injection, von willebrand factor complex (humate-p), per iu vwf:rco	von Willebrand factor 1 UNT Injectable Solution	2718669	41085967
+HCPCS:J7189	Factor viia (antihemophilic factor, recombinant), per 1 microgram	eptacog alfa activated 0.001 MG Injection	2718671	19130382
+HCPCS:J7192	Factor viii (antihemophilic factor, recombinant) per i.u., not otherwise specified	antihemophilic factor, human recombinant 1 UNT	2718674	35603182
+HCPCS:J7195	Injection, factor ix (antihemophilic factor, recombinant) per iu, not otherwise specified	factor IX 1 UNT Injectable Solution [AlphaNine]	2718677	40908539
+HCPCS:J7323	Hyaluronan or derivative, euflexxa, for intra-articular injection, per dose	Hyaluronan or derivative, euflexxa, for intra-articular injection, per dose	2718699	2718699
+HCPCS:J7512	Prednisone, immediate release or delayed release, oral, 1 mg	prednisone 1 MG Delayed Release Oral Tablet	915805	42873627
+HCPCS:J7613	Albuterol, inhalation solution, fda-approved final product, non-compounded, administered through dme, unit dose, 1 mg	albuterol 1 MG Rectal Suppository	2718744	19105478
+HCPCS:J8540	Dexamethasone, oral, 0.25 mg	dexamethasone 0.25 MG Oral Tablet	2718814	1518257
+HCPCS:J9250	Methotrexate sodium, 5 mg	methotrexate 5 MG Oral Tablet	2718891	1305085
+HCPCS:J9263	Injection, oxaliplatin, 0.5 mg	oxaliplatin Injection	2718894	35603923
+HCPCS:J9267	Injection, paclitaxel, 1 mg	paclitaxel Injectable Solution	45890806	40068931
+HCPCS:Q0091	Screening papanicolaou smear; obtaining, preparing and conveyance of cervical or vaginal smear to laboratory	Screening papanicolaou smear; obtaining, preparing and conveyance of cervical or vaginal smear to laboratory	2720580	2720580
+HCPCS:Q0162	Ondansetron 1 mg, oral, fda approved prescription anti-emetic, for use as a complete therapeutic substitute for an iv anti-emetic at the time of chemotherapy treatment, not to exceed a 48 hour dosage regimen	ondansetron Injection	2720596	35605480
+HCPCS:Q5101	Injection, filgrastim-sndz, biosimilar, (zarxio), 1 microgram	Filgrastim Injectable Solution	915822	36880816
+HCPCS:Q9959	High osmolar contrast material, 150-199 mg/ml iodine concentration, per ml	High osmolar contrast material, 150-199 mg/ml iodine concentration, per ml	2720862	2720862
+HCPCS:Q9967	Low osmolar contrast material, 300-399 mg/ml iodine concentration, per ml	Low osmolar contrast material, 300-399 mg/ml iodine concentration, per ml	2720870	2720870

@@ -1,0 +1,60 @@
+CONCEPT_CD	UMLS_NAME	OMOP_CONCEPT_NAME	NS_CONCEPT_ID	S_CONCEPT_ID
+ICD10CM:D64.9	Anemia, unspecified	Anemia	35206757	439777
+ICD10CM:E03.9	Hypothyroidism, unspecified	Hypothyroidism	35206859	140673
+ICD10CM:E11.65	Type 2 diabetes mellitus with hyperglycemia	Type 2 diabetes mellitus	45605405	201826
+ICD10CM:E11.65	Type 2 diabetes mellitus with hyperglycemia	Hyperglycemia due to type 2 diabetes mellitus	45605405	37016349
+ICD10CM:E11.9	Type 2 diabetes mellitus without complications	Type 2 diabetes mellitus without complication	35206882	4193704
+ICD10CM:E55.9	Vitamin D deficiency, unspecified	Vitamin D deficiency	35206992	436070
+ICD10CM:E66.01	Morbid (severe) obesity due to excess calories	Morbid obesity	45600659	434005
+ICD10CM:E66.9	Obesity, unspecified	Obesity	35207024	433736
+ICD10CM:E78.00	Pure hypercholesterolemia, unspecified	Pure hypercholesterolemia	37200312	437827
+ICD10CM:E78.2	Mixed hyperlipidemia	Mixed hyperlipidemia	35207062	438720
+ICD10CM:E78.5	Hyperlipidemia, unspecified	Hyperlipidemia	35207065	432867
+ICD10CM:F17.200	Nicotine dependence, unspecified, uncomplicated	Nicotine dependence	45595884	4209423
+ICD10CM:F17.210	Nicotine dependence, cigarettes, uncomplicated	Nicotine dependence	45562025	4209423
+ICD10CM:F17.210	Nicotine dependence, cigarettes, uncomplicated	Cigarette smoker	45562025	4276526
+ICD10CM:F32.9	Major depressive disorder, single episode, unspecified	Major depression, single episode	35207155	4282096
+ICD10CM:F41.1	Generalized anxiety disorder	Generalized anxiety disorder	35207170	434613
+ICD10CM:F41.9	Anxiety disorder, unspecified	Anxiety disorder	35207173	442077
+ICD10CM:G47.33	Obstructive sleep apnea (adult) (pediatric)	Obstructive sleep apnea syndrome	45552539	442588
+ICD10CM:G89.29	Other chronic pain	Chronic pain	45542912	436096
+ICD10CM:I10	Essential (primary) hypertension	Essential hypertension	35207668	320128
+ICD10CM:I25.10	Atherosclerotic heart disease of native coronary artery without angina pectoris	Atherosclerosis of coronary artery without angina pectoris	45586572	764123
+ICD10CM:I48.0	Paroxysmal atrial fibrillation	Paroxysmal atrial fibrillation	35207784	4154290
+ICD10CM:I48.2	Chronic atrial fibrillation	Chronic atrial fibrillation	1569171	4141360
+ICD10CM:I48.91	Unspecified atrial fibrillation	Atrial fibrillation	45576876	313217
+ICD10CM:J02.9	Acute pharyngitis, unspecified	Acute pharyngitis	35207924	25297
+ICD10CM:J06.9	Acute upper respiratory infection, unspecified	Acute upper respiratory infection	35207929	257011
+ICD10CM:J44.9	Chronic obstructive pulmonary disease, unspecified	Chronic obstructive lung disease	35208025	255573
+ICD10CM:J45.909	Unspecified asthma, uncomplicated	Uncomplicated asthma	45562457	45768910
+ICD10CM:K21.9	Gastro-esophageal reflux disease without esophagitis	Gastroesophageal reflux disease without esophagitis	35208190	4144111
+ICD10CM:M19.90	Unspecified osteoarthritis, unspecified site	Osteoarthritis	45586894	80180
+ICD10CM:M25.561	Pain in right knee	Pain in right knee	45596549	762297
+ICD10CM:M25.562	Pain in left knee	Pain in left knee	45533816	762289
+ICD10CM:M54.2	Cervicalgia	Neck pain	35208968	24134
+ICD10CM:M54.5	Low back pain	Low back pain	35208969	194133
+ICD10CM:N18.3	Chronic kidney disease, stage 3 (moderate)	Chronic kidney disease stage 3	35209276	443597
+ICD10CM:R05	Cough	Cough	35211275	254761
+ICD10CM:R06.02	Shortness of breath	Dyspnea	45534422	312437
+ICD10CM:R07.9	Chest pain, unspecified	Chest pain	45534424	77670
+ICD10CM:R10.9	Unspecified abdominal pain	Abdominal pain	45568114	200219
+ICD10CM:R53.83	Other fatigue	Fatigue	45534458	4223659
+ICD10CM:R94.31	Abnormal electrocardiogram [ECG] [EKG]	Electrocardiogram abnormal	45568157	320536
+ICD10CM:Y92.9	Unspecified place or not applicable	Place of occurrence of accident or poisoning	45576114	4314870
+ICD10CM:Y93.9	Activity, unspecified	Activity	45571309	4117957
+ICD10CM:Z00.00	Encounter for general adult medical examination without abnormal findings	Patient encounter procedure	45552054	4203722
+ICD10CM:Z00.129	Encounter for routine child health examination without abnormal findings	Patient encounter procedure	45571312	4203722
+ICD10CM:Z01.419	Encounter for gynecological examination (general) (routine) without abnormal findings	Patient encounter procedure	45585795	4203722
+ICD10CM:Z01.818	Encounter for other preprocedural examination	Patient encounter procedure	45576122	4203722
+ICD10CM:Z12.11	Encounter for screening for malignant neoplasm of colon	Patient encounter procedure	45552065	4203722
+ICD10CM:Z12.31	Encounter for screening mammogram for malignant neoplasm of breast	Patient encounter procedure	45542403	4203722
+ICD10CM:Z23	Encounter for immunization	Patient encounter procedure	35225097	4203722
+ICD10CM:Z51.0	Encounter for antineoplastic radiation therapy	Patient encounter procedure	35225154	4203722
+ICD10CM:Z51.11	Encounter for antineoplastic chemotherapy	Patient encounter procedure	45571362	4203722
+ICD10CM:Z71.3	Dietary counseling and surveillance	Dietary management surveillance	35225266	4174707
+ICD10CM:Z79.01	Long term (current) use of anticoagulants	Long-term current use of anticoagulant	45552108	46273937
+ICD10CM:Z79.4	Long term (current) use of insulin	Long-term current use of insulin	45576185	46272451
+ICD10CM:Z79.82	Long term (current) use of aspirin	Long-term current use of aspirin	45537677	36717001
+ICD10CM:Z79.899	Other long term (current) drug therapy	Long-term current use of drug therapy	45537679	46272450
+ICD10CM:Z87.891	Personal history of nicotine dependence	History of clinical finding in subject	45566469	4214956
+ICD10CM:Z98.890	Other specified postprocedural states	Postoperative state	37202304	438485

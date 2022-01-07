@@ -1,0 +1,50 @@
+CONCEPT_CD	UMLS_NAME	OMOP_CONCEPT_NAME	NS_CONCEPT_ID	S_CONCEPT_ID
+ICD10PCS:009U3ZX	Drainage of Spinal Canal, Percutaneous Approach, Diagnostic	Drainage of Spinal Canal, Percutaneous Approach, Diagnostic	2722637	2722637
+ICD10PCS:01NB0ZZ	Release Lumbar Nerve, Open Approach	Release Lumbar Nerve, Open Approach	2724536	2724536
+ICD10PCS:027034Z	Dilation of Coronary Artery, One Artery with Drug-eluting Intraluminal Device, Percutaneous Approach	Dilation of Coronary Artery, One Artery with Drug-eluting Intraluminal Device, Percutaneous Approach	2725905	2725905
+ICD10PCS:02HV33Z	Insertion of Infusion Device into Superior Vena Cava, Percutaneous Approach	Insertion of Infusion Device into Superior Vena Cava, Percutaneous Approach	2726351	2726351
+ICD10PCS:03HY32Z	Insertion of Monitoring Device into Upper Artery, Percutaneous Approach	Insertion of Monitoring Device into Upper Artery, Percutaneous Approach	2728511	2728511
+ICD10PCS:0BH17EZ	Insertion of Endotracheal Airway into Trachea, Via Natural or Artificial Opening	Insertion of Endotracheal Airway into Trachea, Via Natural or Artificial Opening	2745444	2745444
+ICD10PCS:0BJ08ZZ	Inspection of Tracheobronchial Tree, Via Natural or Artificial Opening Endoscopic	Inspection of Tracheobronchial Tree, Via Natural or Artificial Opening Endoscopic	2741878	2741878
+ICD10PCS:0CJS8ZZ	Inspection of Larynx, Via Natural or Artificial Opening Endoscopic	Inspection of Larynx, Via Natural or Artificial Opening Endoscopic	2748642	2748642
+ICD10PCS:0DB68ZX	Excision of Stomach, Via Natural or Artificial Opening Endoscopic, Diagnostic	Excision of Stomach, Via Natural or Artificial Opening Endoscopic, Diagnostic	2746773	2746773
+ICD10PCS:0DB98ZX	Excision of Duodenum, Via Natural or Artificial Opening Endoscopic, Diagnostic	Excision of Duodenum, Via Natural or Artificial Opening Endoscopic, Diagnostic	2746803	2746803
+ICD10PCS:0DH67UZ	Insertion of Feeding Device into Stomach, Via Natural or Artificial Opening	Insertion of Feeding Device into Stomach, Via Natural or Artificial Opening	2748609	2748609
+ICD10PCS:0DJ08ZZ	Inspection of Upper Intestinal Tract, Via Natural or Artificial Opening Endoscopic	Inspection of Upper Intestinal Tract, Via Natural or Artificial Opening Endoscopic	2749119	2749119
+ICD10PCS:0DJD8ZZ	Inspection of Lower Intestinal Tract, Via Natural or Artificial Opening Endoscopic	Inspection of Lower Intestinal Tract, Via Natural or Artificial Opening Endoscopic	2749131	2749131
+ICD10PCS:0FT44ZZ	Resection of Gallbladder, Percutaneous Endoscopic Approach	Resection of Gallbladder, Percutaneous Endoscopic Approach	2753505	2753505
+ICD10PCS:0HQ9XZZ	Repair Perineum Skin, External Approach	Repair Perineum Skin, External Approach	2756499	2756499
+ICD10PCS:0KQM0ZZ	Repair Perineum Muscle, Open Approach	Repair Perineum Muscle, Open Approach	2756126	2756126
+ICD10PCS:0SRC0J9	Replacement of Right Knee Joint with Synthetic Substitute, Cemented, Open Approach	Replacement of Right Knee Joint with Synthetic Substitute, Cemented, Open Approach	2774098	2774098
+ICD10PCS:0SRD0J9	Replacement of Left Knee Joint with Synthetic Substitute, Cemented, Open Approach	Replacement of Left Knee Joint with Synthetic Substitute, Cemented, Open Approach	2774103	2774103
+ICD10PCS:0T9B70Z	Drainage of Bladder with Drainage Device, Via Natural or Artificial Opening	Drainage of Bladder with Drainage Device, Via Natural or Artificial Opening	2777444	2777444
+ICD10PCS:0U7C7ZZ	Dilation of Cervix, Via Natural or Artificial Opening	Dilation of Cervix, Via Natural or Artificial Opening	2775777	2775777
+ICD10PCS:0VTTXZZ	Resection of Prepuce, External Approach	Resection of Prepuce, External Approach	2780523	2780523
+ICD10PCS:0W9930Z	Drainage of Right Pleural Cavity with Drainage Device, Percutaneous Approach	Drainage of Right Pleural Cavity with Drainage Device, Percutaneous Approach	2779527	2779527
+ICD10PCS:0W9B30Z	Drainage of Left Pleural Cavity with Drainage Device, Percutaneous Approach	Drainage of Left Pleural Cavity with Drainage Device, Percutaneous Approach	2779536	2779536
+ICD10PCS:10907ZC	Drainage of Amniotic Fluid, Therapeutic from Products of Conception, Via Natural or Artificial Opening	Drainage of Amniotic Fluid, Therapeutic from Products of Conception, Via Natural or Artificial Opening	2784545	2784545
+ICD10PCS:10D00Z1	Extraction of Products of Conception, Low, Open Approach	Extraction of Products of Conception, Low, Open Approach	2784565	2784565
+ICD10PCS:10E0XZZ	Delivery of Products of Conception, External Approach	Delivery of Products of Conception, External Approach	2784578	2784578
+ICD10PCS:30233K1	Transfusion of Nonautologous Frozen Plasma into Peripheral Vein, Percutaneous Approach	Transfusion of Nonautologous Frozen Plasma into Peripheral Vein, Percutaneous Approach	2788711	2788711
+ICD10PCS:30233N1	Transfusion of Nonautologous Red Blood Cells into Peripheral Vein, Percutaneous Approach	Transfusion of Nonautologous Red Blood Cells into Peripheral Vein, Percutaneous Approach	2788717	2788717
+ICD10PCS:30233R1	Transfusion of Nonautologous Platelets into Peripheral Vein, Percutaneous Approach	Transfusion of Nonautologous Platelets into Peripheral Vein, Percutaneous Approach	2788723	2788723
+ICD10PCS:3E033VJ	Introduction of Other Hormone into Peripheral Vein, Percutaneous Approach	Introduction of Other Hormone into Peripheral Vein, Percutaneous Approach	2786438	2786438
+ICD10PCS:3E0436Z	Introduction of Nutritional Substance into Central Vein, Percutaneous Approach	Introduction of Nutritional Substance into Central Vein, Percutaneous Approach	2786481	2786481
+ICD10PCS:3E0G76Z	Introduction of Nutritional Substance into Upper GI, Via Natural or Artificial Opening	Introduction of Nutritional Substance into Upper GI, Via Natural or Artificial Opening	2788275	2788275
+ICD10PCS:4A023N7	Measurement of Cardiac Sampling and Pressure, Left Heart, Percutaneous Approach	Measurement of Cardiac Sampling and Pressure, Left Heart, Percutaneous Approach	2786548	2786548
+ICD10PCS:4A10X4G	Monitoring of Central Nervous Electrical Activity, Intraoperative, External Approach	Monitoring of Central Nervous Electrical Activity, Intraoperative, External Approach	2787279	2787279
+ICD10PCS:5A1221Z	Performance of Cardiac Output, Continuous	Performance of Cardiac Output, Continuous	2788032	2788032
+ICD10PCS:5A1935Z	Respiratory Ventilation, Less than 24 Consecutive Hours	Respiratory Ventilation, Less than 24 Consecutive Hours	2788036	2788036
+ICD10PCS:5A1945Z	Respiratory Ventilation, 24-96 Consecutive Hours	Respiratory Ventilation, 24-96 Consecutive Hours	2788037	2788037
+ICD10PCS:5A1955Z	Respiratory Ventilation, Greater than 96 Consecutive Hours	Respiratory Ventilation, Greater than 96 Consecutive Hours	2788038	2788038
+ICD10PCS:5A1D70Z	Performance of Urinary Filtration, Intermittent, Less than 6 Hours Per Day	Performance of Urinary Filtration, Intermittent, Less than 6 Hours Per Day	43018323	43018323
+ICD10PCS:5A2204Z	Restoration of Cardiac Rhythm, Single	Restoration of Cardiac Rhythm, Single	2788044	2788044
+ICD10PCS:8E0W4CZ	Robotic Assisted Procedure of Trunk Region, Percutaneous Endoscopic Approach	Robotic Assisted Procedure of Trunk Region, Percutaneous Endoscopic Approach	2788815	2788815
+ICD10PCS:B020ZZZ	Computerized Tomography (CT Scan) of Brain	Computerized Tomography (CT Scan) of Brain	2789329	2789329
+ICD10PCS:B030ZZZ	Magnetic Resonance Imaging (MRI) of Brain	Magnetic Resonance Imaging (MRI) of Brain	2789361	2789361
+ICD10PCS:B2111ZZ	Fluoroscopy of Multiple Coronary Arteries using Low Osmolar Contrast	Fluoroscopy of Multiple Coronary Arteries using Low Osmolar Contrast	2789604	2789604
+ICD10PCS:B2151ZZ	Fluoroscopy of Left Heart using Low Osmolar Contrast	Fluoroscopy of Left Heart using Low Osmolar Contrast	2785799	2785799
+ICD10PCS:B24BZZ4	Ultrasonography of Heart with Aorta, Transesophageal	Ultrasonography of Heart with Aorta, Transesophageal	2786058	2786058
+ICD10PCS:B32R1ZZ	Computerized Tomography (CT Scan) of Intracranial Arteries using Low Osmolar Contrast	Computerized Tomography (CT Scan) of Intracranial Arteries using Low Osmolar Contrast	2787331	2787331
+ICD10PCS:BW28ZZZ	Computerized Tomography (CT Scan) of Head	Computerized Tomography (CT Scan) of Head	2793067	2793067
+ICD10PCS:HZ2ZZZZ	Detoxification Services for Substance Abuse Treatment	Detoxification Services for Substance Abuse Treatment	2795859	2795859

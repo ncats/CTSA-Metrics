@@ -1,0 +1,51 @@
+CONCEPT_CD	UMLS_NAME	OMOP_CONCEPT_NAME	NS_CONCEPT_ID	S_CONCEPT_ID
+ICD9PROC:00.40	Procedure on single vessel	Procedure on single vessel	2000037	2000037
+ICD9PROC:00.66	Percutaneous transluminal coronary angioplasty [PTCA]	Percutaneous transluminal coronary angioplasty	2000064	4006788
+ICD9PROC:03.31	Spinal tap	Lumbar puncture	2000173	4080549
+ICD9PROC:03.91	Injection of anesthetic into spinal canal for analgesia	Injection of spinal anesthetic agent for analgesia	2000190	4040310
+ICD9PROC:03.92	Injection of other agent into spinal canal	Injection of other agent into spinal canal	2000191	2000191
+ICD9PROC:04.81	Injection of anesthetic into peripheral nerve for analgesia	Injection of anesthetic agent into peripheral nerve for analgesia	2000232	4171417
+ICD9PROC:13.41	Phacoemulsification and aspiration of cataract	Aspiration of cataract by phacoemulsification	2000581	4223363
+ICD9PROC:13.71	Insertion of intraocular lens prosthesis at time of cataract extraction, one-stage	One stage extracapsular extraction of lens and insertion of prosthetic intraocular lens	2000594	40491916
+ICD9PROC:33.24	Closed [endoscopic] biopsy of bronchus	Bronchoscopy and biopsy of bronchus	2001354	4167261
+ICD9PROC:37.22	Left heart cardiac catheterization	Catheterization of left heart	2001537	4195852
+ICD9PROC:38.91	Arterial catheterization	Insertion of catheter into artery	2002172	4213288
+ICD9PROC:38.93	Venous catheterization, not elsewhere classified	Venous catheterization, not elsewhere classified	2002174	2002174
+ICD9PROC:38.97	Central venous catheter placement with guidance	Central venous catheter placement with guidance	40756786	40756786
+ICD9PROC:39.95	Hemodialysis	Hemodialysis	2002282	4120120
+ICD9PROC:42.92	Dilation of esophagus	Dilation of esophagus	2002525	4112340
+ICD9PROC:45.13	Other endoscopy of small intestine	Other endoscopy of small intestine	2002685	2002685
+ICD9PROC:45.16	Esophagogastroduodenoscopy [EGD] with closed biopsy	Endoscopy and biopsy of upper gastrointestinal tract	2002688	40485932
+ICD9PROC:45.23	Colonoscopy	Colonoscopy	2002703	4249893
+ICD9PROC:45.25	Closed [endoscopic] biopsy of large intestine	Endoscopic biopsy of large intestine	2002705	4198057
+ICD9PROC:45.42	Endoscopic polypectomy of large intestine	Endoscopic polypectomy of large intestine	2002728	4103380
+ICD9PROC:51.23	Laparoscopic cholecystectomy	Laparoscopic cholecystectomy	2003223	4163971
+ICD9PROC:54.91	Percutaneous abdominal drainage	Abdominal paracentesis	2003547	4231419
+ICD9PROC:57.32	Other cystoscopy	Other cystoscopy	2003783	2003783
+ICD9PROC:57.94	Insertion of indwelling urinary catheter	Insertion of indwelling catheter into urinary bladder	2003821	40488365
+ICD9PROC:59.8	Ureteral catheterization	Catheterization of ureter	2003936	4180860
+ICD9PROC:64.0	Circumcision	Circumcision	2004150	4218438
+ICD9PROC:73.59	Other manually assisted delivery	Other manually assisted delivery	2004765	2004765
+ICD9PROC:74.1	Low cervical cesarean section	Lower uterine segment cesarean section	2004786	37312440
+ICD9PROC:75.69	Repair of other current obstetric laceration	Repair of other current obstetric laceration	2004844	2004844
+ICD9PROC:80.51	Excision of intervertebral disc	Discectomy of spine	2005709	4145274
+ICD9PROC:81.54	Total knee replacement	Total knee replacement	2005904	43531648
+ICD9PROC:81.62	Fusion or refusion of 2-3 vertebrae	Fusion or refusion of 2-3 vertebrae	2005911	2005911
+ICD9PROC:81.92	Injection of therapeutic substance into joint or ligament	Injection of therapeutic substance into joint or ligament	2005962	2005962
+ICD9PROC:86.04	Other incision with drainage of skin and subcutaneous tissue	Other incision with drainage of skin and subcutaneous tissue	2006513	2006513
+ICD9PROC:86.3	Other local excision or destruction of lesion or tissue of skin and subcutaneous tissue	Other local excision or destruction of lesion or tissue of skin and subcutaneous tissue	2006540	2006540
+ICD9PROC:86.59	Closure of skin and subcutaneous tissue of other sites	Closure of skin and subcutaneous tissue of other sites	2006554	2006554
+ICD9PROC:87.03	Computerized axial tomography of head	Computerized axial tomography of brain	2006634	4145739
+ICD9PROC:88.41	Arteriography of cerebral arteries	Arteriography of cerebral arteries	2006856	4138836
+ICD9PROC:88.53	Angiocardiography of left heart structures	Angiocardiography of left heart	2006879	4205879
+ICD9PROC:88.56	Coronary arteriography using two catheters	Coronary arteriography using two catheters	2006892	4171675
+ICD9PROC:88.72	Diagnostic ultrasound of heart	Echocardiography	2006918	4230911
+ICD9PROC:93.39	Other physical therapy	Other physical therapy	2007587	2007587
+ICD9PROC:93.54	Application of splint	Application of splint	2007609	4194049
+ICD9PROC:93.83	Occupational therapy	Occupational therapy	2007675	4309371
+ICD9PROC:96.04	Insertion of endotracheal tube	Insertion of endotracheal tube	2007901	4013354
+ICD9PROC:96.71	Continuous invasive mechanical ventilation for less than 96 consecutive hours	Continuous invasive mechanical ventilation for less than 96 consecutive hours	2008008	2008008
+ICD9PROC:96.72	Continuous invasive mechanical ventilation for 96 consecutive hours or more	Continuous invasive mechanical ventilation for 96 consecutive hours or more	2008009	2008009
+ICD9PROC:99.04	Transfusion of packed cells	Packed blood cell transfusion	2008238	4125928
+ICD9PROC:99.23	Injection of steroid	Injection of steroid	2008269	4176683
+ICD9PROC:99.29	Injection or infusion of other therapeutic or prophylactic substance	Injection or infusion of other therapeutic or prophylactic substance	2008285	2008285

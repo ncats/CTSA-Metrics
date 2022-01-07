@@ -1,0 +1,71 @@
+CONCEPT_CD	UMLS_NAME	OMOP_CONCEPT_NAME	NS_CONCEPT_ID	S_CONCEPT_ID
+LOINC:10466-1	Anion gap 3:SCnc:Pt:Ser/Plas:Qn	Anion gap 3 in Serum or Plasma	3021391	3021391
+LOINC:1742-6	Alanine aminotransferase:CCnc:Pt:Ser/Plas:Qn	Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma	3006923	3006923
+LOINC:1744-2	Alanine aminotransferase:CCnc:Pt:Ser/Plas:Qn:No addition of P-5'-P	Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma by No addition of P-5'-P	3027388	3027388
+LOINC:1751-7	Albumin:MCnc:Pt:Ser/Plas:Qn	Albumin [Mass/volume] in Serum or Plasma	3024561	3024561
+LOINC:17861-6	Calcium:MCnc:Pt:Ser/Plas:Qn	Calcium [Mass/volume] in Serum or Plasma	3006906	3006906
+LOINC:19123-9	Magnesium:MCnc:Pt:Ser/Plas:Qn	Magnesium [Mass/volume] in Serum or Plasma	3001420	3001420
+LOINC:1920-8	Aspartate aminotransferase:CCnc:Pt:Ser/Plas:Qn	Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma	3013721	3013721
+LOINC:1960-4	Bicarbonate:SCnc:Pt:BldA:Qn	Bicarbonate [Moles/volume] in Arterial blood	3008152	3008152
+LOINC:1962-0	Bicarbonate:SCnc:Pt:Plas:Qn	Bicarbonate [Moles/volume] in Plasma	3015473	3015473
+LOINC:1963-8	Bicarbonate:SCnc:Pt:Ser/Plas:Qn	Bicarbonate [Moles/volume] in Serum or Plasma	3016293	3016293
+LOINC:1975-2	Bilirubin:MCnc:Pt:Ser/Plas:Qn	Bilirubin.total [Mass/volume] in Serum or Plasma	3024128	3024128
+LOINC:2019-8	Carbon dioxide:PPres:Pt:BldA:Qn	Carbon dioxide [Partial pressure] in Arterial blood	3027946	3027946
+LOINC:2028-9	Carbon dioxide:SCnc:Pt:Ser/Plas:Qn	Carbon dioxide, total [Moles/volume] in Serum or Plasma	3015632	3015632
+LOINC:20564-1	Oxygen saturation:MFr:Pt:Bld:Qn	Oxygen saturation in Blood	3013502	3013502
+LOINC:20570-8	Hematocrit:VFr:Pt:Bld:Qn	Hematocrit [Volume Fraction] of Blood	3009542	3009542
+LOINC:2075-0	Chloride:SCnc:Pt:Ser/Plas:Qn	Chloride [Moles/volume] in Serum or Plasma	3014576	3014576
+LOINC:2160-0	Creatinine:MCnc:Pt:Ser/Plas:Qn	Creatinine [Mass/volume] in Serum or Plasma	3016723	3016723
+LOINC:2339-0	Glucose:MCnc:Pt:Bld:Qn	Glucose [Mass/volume] in Blood	3000483	3000483
+LOINC:2345-7	Glucose:MCnc:Pt:Ser/Plas:Qn	Glucose [Mass/volume] in Serum or Plasma	3004501	3004501
+LOINC:26450-7	Eosinophils/100 leukocytes:NFr:Pt:Bld:Qn	Eosinophils/100 leukocytes in Blood	3006504	3006504
+LOINC:26485-3	Monocytes/100 leukocytes:NFr:Pt:Bld:Qn	Monocytes/100 leukocytes in Blood	3019069	3019069
+LOINC:2703-7	Oxygen:PPres:Pt:BldA:Qn	Oxygen [Partial pressure] in Arterial blood	3027801	3027801
+LOINC:2708-6	Oxygen saturation:MFr:Pt:BldA:Qn	Oxygen saturation in Arterial blood	3016502	3016502
+LOINC:2711-0	Oxygen saturation:MFr:Pt:BldV:Qn	Oxygen saturation in Venous blood	3024928	3024928
+LOINC:2713-6	Oxygen saturation:MFr:Pt:Bld:Qn:Calculated from oxygen partial pressure	Oxygen saturation Calculated from oxygen partial pressure in Blood	3011367	3011367
+LOINC:2744-1	pH:LsCnc:Pt:BldA:Qn	pH of Arterial blood	3019977	3019977
+LOINC:2777-1	Phosphate:MCnc:Pt:Ser/Plas:Qn	Phosphate [Mass/volume] in Serum or Plasma	3011904	3011904
+LOINC:2823-3	Potassium:SCnc:Pt:Ser/Plas:Qn	Potassium [Moles/volume] in Serum or Plasma	3023103	3023103
+LOINC:2885-2	Protein:MCnc:Pt:Ser/Plas:Qn	Protein [Mass/volume] in Serum or Plasma	3020630	3020630
+LOINC:2951-2	Sodium:SCnc:Pt:Ser/Plas:Qn	Sodium [Moles/volume] in Serum or Plasma	3019550	3019550
+LOINC:30180-4	Basophils/100 leukocytes:NFr:Pt:Bld:Qn	Basophils/100 leukocytes in Blood	3022096	3022096
+LOINC:3094-0	Urea nitrogen:MCnc:Pt:Ser/Plas:Qn	Urea nitrogen [Mass/volume] in Serum or Plasma	3013682	3013682
+LOINC:3097-3	Urea nitrogen/Creatinine:MRto:Pt:Ser/Plas:Qn	Urea nitrogen/Creatinine [Mass Ratio] in Serum or Plasma	3018311	3018311
+LOINC:32623-1	Platelet mean volume:EntVol:Pt:Bld:Qn:Automated count	Platelet mean volume [Entitic volume] in Blood by Automated count	3043111	3043111
+LOINC:33037-3	Anion gap:SCnc:Pt:Ser/Plas:Qn	Anion gap in Serum or Plasma	3045716	3045716
+LOINC:33914-3	Glomerular filtration rate/1.73 sq M.predicted:ArVRat:Pt:Ser/Plas:Qn:Creatinine-based formula (MDRD)	Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD)	3030354	46236952
+LOINC:4544-3	Hematocrit:VFr:Pt:Bld:Qn:Automated count	Hematocrit [Volume Fraction] of Blood by Automated count	3023314	3023314
+LOINC:48642-3	Glomerular filtration rate/1.73 sq M.predicted.non black:ArVRat:Pt:Ser/Plas/Bld:Qn:Creatinine-based formula (MDRD)	Glomerular filtration rate/1.73 sq M.predicted among non-blacks [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD)	3049187	3049187
+LOINC:48643-1	Glomerular filtration rate/1.73 sq M.predicted.black:ArVRat:Pt:Ser/Plas/Bld:Qn:Creatinine-based formula (MDRD)	Glomerular filtration rate/1.73 sq M.predicted among blacks [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD)	3053283	3053283
+LOINC:51731-8	Oxygen saturation:MFr:Pt:BldV:Qn:Calculated from oxygen partial pressure	Oxygen saturation Calculated from oxygen partial pressure in Venous blood	3041253	3041253
+LOINC:58413-6	Erythrocytes.nucleated/100 leukocytes:Ratio:Pt:Bld:Qn:Automated count	Nucleated erythrocytes/100 leukocytes [Ratio] in Blood by Automated count	40761514	40761514
+LOINC:5902-2	Coagulation tissue factor induced:Time:Pt:PPP:Qn:Coag	Prothrombin time (PT)	3034426	3034426
+LOINC:5905-5	Monocytes/100 leukocytes:NFr:Pt:Bld:Qn:Automated count	Monocytes/100 leukocytes in Blood by Automated count	3011948	3011948
+LOINC:61152-5	Albumin:MCnc:Pt:Ser/Plas:Qn:BCP	Albumin [Mass/volume] in Serum or Plasma by Bromocresol purple (BCP) dye binding method	40763913	40763913
+LOINC:62238-1	Glomerular filtration rate/1.73 sq M.predicted:ArVRat:Pt:Ser/Plas/Bld:Qn:Creatinine-based formula (CKD-EPI)	Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (CKD-EPI)	40764999	40764999
+LOINC:6301-6	Coagulation tissue factor induced.INR:RelTime:Pt:PPP:Qn:Coag	INR in Platelet poor plasma by Coagulation assay	3022217	3022217
+LOINC:6463-4	Bacteria identified:Prid:Pt:XXX:Nom:Culture	Bacteria identified in Unspecified specimen by Culture	3002619	3002619
+LOINC:66746-9	Specimen type:Type:Pt:Specimen:Nom	Specimen type	40769406	40769406
+LOINC:6690-2	Leukocytes:NCnc:Pt:Bld:Qn:Automated count	Leukocytes [#/volume] in Blood by Automated count	3000905	3000905
+LOINC:6768-6	Alkaline phosphatase:CCnc:Pt:Ser/Plas:Qn	Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma	3035995	3035995
+LOINC:704-7	Basophils:NCnc:Pt:Bld:Qn:Automated count	Basophils [#/volume] in Blood by Automated count	3013429	3013429
+LOINC:706-2	Basophils/100 leukocytes:NFr:Pt:Bld:Qn:Automated count	Basophils/100 leukocytes in Blood by Automated count	3013869	3013869
+LOINC:711-2	Eosinophils:NCnc:Pt:Bld:Qn:Automated count	Eosinophils [#/volume] in Blood by Automated count	3028615	3028615
+LOINC:713-8	Eosinophils/100 leukocytes:NFr:Pt:Bld:Qn:Automated count	Eosinophils/100 leukocytes in Blood by Automated count	3010457	3010457
+LOINC:71695-1	Granulocytes.immature/100 leukocytes:NFr:Pt:Bld:Qn:Automated count	Immature granulocytes/100 leukocytes in Blood by Automated count	42869452	42869452
+LOINC:718-7	Hemoglobin:MCnc:Pt:Bld:Qn	Hemoglobin [Mass/volume] in Blood	3000963	3000963
+LOINC:731-0	Lymphocytes:NCnc:Pt:Bld:Qn:Automated count	Lymphocytes [#/volume] in Blood by Automated count	3004327	3004327
+LOINC:736-9	Lymphocytes/100 leukocytes:NFr:Pt:Bld:Qn:Automated count	Lymphocytes/100 leukocytes in Blood by Automated count	3037511	3037511
+LOINC:742-7	Monocytes:NCnc:Pt:Bld:Qn:Automated count	Monocytes [#/volume] in Blood by Automated count	3033575	3033575
+LOINC:751-8	Neutrophils:NCnc:Pt:Bld:Qn:Automated count	Neutrophils [#/volume] in Blood by Automated count	3013650	3013650
+LOINC:770-8	Neutrophils/100 leukocytes:NFr:Pt:Bld:Qn:Automated count	Neutrophils/100 leukocytes in Blood by Automated count	3008342	3008342
+LOINC:777-3	Platelets:NCnc:Pt:Bld:Qn:Automated count	Platelets [#/volume] in Blood by Automated count	3024929	3024929
+LOINC:785-6	Erythrocyte mean corpuscular hemoglobin:EntMass:Pt:RBC:Qn:Automated count	MCH [Entitic mass] by Automated count	3012030	3012030
+LOINC:786-4	Erythrocyte mean corpuscular hemoglobin concentration:MCnc:Pt:RBC:Qn:Automated count	MCHC [Mass/volume] by Automated count	3009744	3009744
+LOINC:787-2	Erythrocyte mean corpuscular volume:EntVol:Pt:RBC:Qn:Automated count	MCV [Entitic volume] by Automated count	3023599	3023599
+LOINC:788-0	Erythrocyte distribution width:Ratio:Pt:RBC:Qn:Automated count	Erythrocyte distribution width [Ratio] by Automated count	3019897	3019897
+LOINC:789-8	Erythrocytes:NCnc:Pt:Bld:Qn:Automated count	Erythrocytes [#/volume] in Blood by Automated count	3020416	3020416
+LOINC:8310-5	Body temperature:Temp:Pt:^Patient:Qn	Body temperature	3020891	3020891
+LOINC:933-2	Blood product type:Type:Pt:^BPU:Nom	Blood product type	3012796	3012796
+LOINC:934-0	Blood product unit ID:Num:Pt:Dose:Qn	Blood product unit ID [#]	3027929	3027929

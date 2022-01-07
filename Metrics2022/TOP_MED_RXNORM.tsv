@@ -1,0 +1,84 @@
+CONCEPT_CD	UMLS_NAME	OMOP_CONCEPT_NAME	NS_CONCEPT_ID	S_CONCEPT_ID	TTY
+RXNORM:834023	{21 (methylprednisolone 4 MG Oral Tablet [Medrol]) } Pack [Medrol Dosepak]	{21 (methylprednisolone 4 MG Oral Tablet [Medrol]) } Pack [Medrol Dosepak]	19133854	19133854	BPCK
+RXNORM:2418	cholecalciferol	cholecalciferol	19095164	19095164	IN
+RXNORM:6918	metoprolol	metoprolol	1307046	1307046	IN
+RXNORM:104491	simvastatin 20 MG Oral Tablet [Zocor]	simvastatin 20 MG Oral Tablet [Zocor]	19004082	19004082	SBD
+RXNORM:105029	gabapentin 300 MG Oral Capsule [Neurontin]	gabapentin 300 MG Oral Capsule [Neurontin]	19006232	19006232	SBD
+RXNORM:1050490	acetaminophen 325 MG / oxycodone hydrochloride 5 MG Oral Tablet [Roxicet]	acetaminophen 325 MG / oxycodone hydrochloride 5 MG Oral Tablet [Roxicet]	40231928	40231928	SBD
+RXNORM:1189779	hydrochlorothiazide 25 MG Oral Tablet [Hydrocot]	hydrochlorothiazide 25 MG Oral Tablet [Hydrocot]	40243938	40243938	SBD
+RXNORM:1246235	sulfamethoxazole 800 MG / trimethoprim 160 MG Oral Tablet [Uroplus]	sulfamethoxazole 800 MG / trimethoprim 160 MG Oral Tablet [Uroplus]	42708497	42708497	SBD
+RXNORM:1360292	albuterol 0.09 MG/ACTUAT Metered Dose Inhaler [Proventil]	albuterol 0.09 MG/ACTUAT Metered Dose Inhaler [Proventil]	42903179	42903179	SBD
+RXNORM:141928	alprazolam 0.5 MG Oral Tablet [Xanax]	alprazolam 0.5 MG Oral Tablet [Xanax]	781041	781041	SBD
+RXNORM:1495474	acetaminophen 325 MG / hydrocodone bitartrate 5 MG Oral Tablet [Lortab]	acetaminophen 325 MG / hydrocodone bitartrate 5 MG Oral Tablet [Lortab]	44816257	44816257	SBD
+RXNORM:1495476	acetaminophen 325 MG / hydrocodone bitartrate 7.5 MG Oral Tablet [Lortab]	acetaminophen 325 MG / hydrocodone bitartrate 7.5 MG Oral Tablet [Lortab]	44816258	44816258	SBD
+RXNORM:152698	meloxicam 15 MG Oral Tablet [Mobic]	meloxicam 15 MG Oral Tablet [Mobic]	1150349	1150349	SBD
+RXNORM:152923	simvastatin 40 MG Oral Tablet [Zocor]	simvastatin 40 MG Oral Tablet [Zocor]	1539406	1539406	SBD
+RXNORM:153892	montelukast 10 MG Oral Tablet [Singulair]	montelukast 10 MG Oral Tablet [Singulair]	1154192	1154192	SBD
+RXNORM:1664448	oxycodone hydrochloride 5 MG Oral Tablet [Oxaydo]	oxycodone hydrochloride 5 MG Oral Tablet [Oxaydo]	46287725	46287725	SBD
+RXNORM:205770	ciprofloxacin 500 MG Oral Tablet [Cipro]	ciprofloxacin 500 MG Oral Tablet [Cipro]	19030163	19030163	SBD
+RXNORM:206765	lisinopril 10 MG Oral Tablet [Prinivil]	lisinopril 10 MG Oral Tablet [Prinivil]	19033405	19033405	SBD
+RXNORM:206766	lisinopril 20 MG Oral Tablet [Prinivil]	lisinopril 20 MG Oral Tablet [Prinivil]	19033406	19033406	SBD
+RXNORM:206821	lorazepam 0.5 MG Oral Tablet [Ativan]	lorazepam 0.5 MG Oral Tablet [Ativan]	19033566	19033566	SBD
+RXNORM:208161	sertraline 50 MG Oral Tablet [Zoloft]	sertraline 50 MG Oral Tablet [Zoloft]	19037684	19037684	SBD
+RXNORM:209387	acetaminophen 325 MG Oral Tablet [Tylenol]	acetaminophen 325 MG Oral Tablet [Tylenol]	19041324	19041324	SBD
+RXNORM:209459	acetaminophen 500 MG Oral Tablet [Tylenol]	acetaminophen 500 MG Oral Tablet [Tylenol]	19041503	19041503	SBD
+RXNORM:212340	cephalexin 500 MG Oral Capsule [Zartan]	cephalexin 500 MG Oral Capsule [Zartan]	19047008	19047008	SBD
+RXNORM:212549	amlodipine 5 MG Oral Tablet [Norvasc]	amlodipine 5 MG Oral Tablet [Norvasc]	1332421	1332421	SBD
+RXNORM:212575	amlodipine 10 MG Oral Tablet [Norvasc]	amlodipine 10 MG Oral Tablet [Norvasc]	1332442	1332442	SBD
+RXNORM:213169	clopidogrel 75 MG Oral Tablet [Plavix]	clopidogrel 75 MG Oral Tablet [Plavix]	1322185	1322185	SBD
+RXNORM:261224	amoxicillin 80 MG/ML Oral Suspension [Amoxil]	amoxicillin 80 MG/ML Oral Suspension [Amoxil]	1713479	1713479	SBD
+RXNORM:284400	pantoprazole 40 MG Delayed Release Oral Tablet [Protonix]	pantoprazole 40 MG Delayed Release Oral Tablet [Protonix]	19071430	19071430	SBD
+RXNORM:311036	insulin, regular, human 100 UNT/ML Injectable Solution [Humulin R]	insulin, regular, human 100 UNT/ML Injectable Solution [Humulin R]	19078557	19078557	SBD
+RXNORM:540472	amoxicillin 500 MG Oral Capsule [Sumox]	amoxicillin 500 MG Oral Capsule [Sumox]	19113371	19113371	SBD
+RXNORM:540848	citalopram 20 MG Oral Tablet [Citalopraam]	citalopram 20 MG Oral Tablet [Citalopraam]	19113503	19113503	SBD
+RXNORM:541713	ibuprofen 800 MG Oral Tablet [Samson 8]	ibuprofen 800 MG Oral Tablet [Samson 8]	1177801	1177801	SBD
+RXNORM:541815	prednisone 10 MG Oral Tablet [Predone]	prednisone 10 MG Oral Tablet [Predone]	19113791	19113791	SBD
+RXNORM:541872	prednisone 20 MG Oral Tablet [Predone]	prednisone 20 MG Oral Tablet [Predone]	19113806	19113806	SBD
+RXNORM:542673	furosemide 20 MG Oral Tablet [Delone]	furosemide 20 MG Oral Tablet [Delone]	957209	957209	SBD
+RXNORM:542678	furosemide 40 MG Oral Tablet [Furocot]	furosemide 40 MG Oral Tablet [Furocot]	19114045	19114045	SBD
+RXNORM:617314	atorvastatin 10 MG Oral Tablet [Lipitor]	atorvastatin 10 MG Oral Tablet [Lipitor]	1545998	1545998	SBD
+RXNORM:617318	atorvastatin 20 MG Oral Tablet [Lipitor]	atorvastatin 20 MG Oral Tablet [Lipitor]	1545999	1545999	SBD
+RXNORM:617320	atorvastatin 40 MG Oral Tablet [Lipitor]	atorvastatin 40 MG Oral Tablet [Lipitor]	19123593	19123593	SBD
+RXNORM:628530	azithromycin 250 MG Oral Tablet [Azinthromycin]	azithromycin 250 MG Oral Tablet [Azinthromycin]	19123886	19123886	SBD
+RXNORM:824194	amoxicillin 875 MG / clavulanate 125 MG Oral Tablet [Augmentin]	amoxicillin 875 MG / clavulanate 125 MG Oral Tablet [Augmentin]	19133023	19133023	SBD
+RXNORM:828350	cyclobenzaprine hydrochloride 10 MG Oral Tablet [Flexeril]	cyclobenzaprine hydrochloride 10 MG Oral Tablet [Flexeril]	19133286	19133286	SBD
+RXNORM:835605	tramadol hydrochloride 50 MG Oral Tablet [Ultram]	tramadol hydrochloride 50 MG Oral Tablet [Ultram]	19134049	19134049	SBD
+RXNORM:859096	albuterol 0.83 MG/ML Inhalation Solution [Ventolin]	albuterol 0.83 MG/ML Inhalation Solution [Ventolin]	40164014	40164014	SBD
+RXNORM:861006	metformin hydrochloride 1000 MG Oral Tablet [Glucophage]	metformin hydrochloride 1000 MG Oral Tablet [Glucophage]	40164898	40164898	SBD
+RXNORM:861008	metformin hydrochloride 500 MG Oral Tablet [Glucophage]	metformin hydrochloride 500 MG Oral Tablet [Glucophage]	40164930	40164930	SBD
+RXNORM:863671	tamsulosin hydrochloride 0.4 MG Oral Capsule [Flomax]	tamsulosin hydrochloride 0.4 MG Oral Capsule [Flomax]	40166541	40166541	SBD
+RXNORM:865098	insulin lispro 100 UNT/ML Injectable Solution [Humalog]	insulin lispro 100 UNT/ML Injectable Solution [Humalog]	40166274	40166274	SBD
+RXNORM:866516	metoprolol tartrate 50 MG Oral Tablet [Lopressor]	metoprolol tartrate 50 MG Oral Tablet [Lopressor]	40167219	40167219	SBD
+RXNORM:967525	omeprazole 20 MG Delayed Release Oral Capsule [Omesec]	omeprazole 20 MG Delayed Release Oral Capsule [Omesec]	40176131	40176131	SBD
+RXNORM:1049221	acetaminophen 325 MG / oxycodone hydrochloride 5 MG Oral Tablet	acetaminophen 325 MG / oxycodone hydrochloride 5 MG Oral Tablet	40231925	40231925	SCD
+RXNORM:998740	docusate sodium 50 MG / sennosides, USP 8.6 MG Oral Tablet	docusate sodium 50 MG / sennosides, USP 8.6 MG Oral Tablet	40223757	40223757	SCD
+RXNORM:1115005	docusate sodium 100 MG Oral Capsule	docusate sodium 100 MG Oral Capsule	40240688	40240688	SCD
+RXNORM:1361615	heparin sodium, porcine 5000 UNT/ML Injectable Solution	heparin sodium, porcine 5000 UNT/ML Injectable Solution	43011850	43011850	SCD
+RXNORM:1437702	albuterol 0.833 MG/ML / ipratropium bromide 0.167 MG/ML Inhalation Solution	albuterol 0.833 MG/ML / ipratropium bromide 0.167 MG/ML Inhalation Solution	43560451	43560451	SCD
+RXNORM:1049621	oxycodone hydrochloride 5 MG Oral Tablet	oxycodone hydrochloride 5 MG Oral Tablet	40232756	40232756	SCD
+RXNORM:876193	polyethylene glycol 3350 17000 MG Powder for Oral Solution	polyethylene glycol 3350 17000 MG Powder for Oral Solution	40167259	40167259	SCD
+RXNORM:866924	metoprolol tartrate 25 MG Oral Tablet	metoprolol tartrate 25 MG Oral Tablet	40167213	40167213	SCD
+RXNORM:857002	acetaminophen 325 MG / hydrocodone bitartrate 5 MG Oral Tablet	acetaminophen 325 MG / hydrocodone bitartrate 5 MG Oral Tablet	40162515	40162515	SCD
+RXNORM:1658634	0.5 ML heparin sodium, porcine 10000 UNT/ML Injection	0.5 ML heparin sodium, porcine 10000 UNT/ML Injection	46275352	46275352	SCD
+RXNORM:1659137	piperacillin 3000 MG / tazobactam 375 MG Injection	piperacillin 3000 MG / tazobactam 375 MG Injection	46275433	46275433	SCD
+RXNORM:1665088	cefepime 2000 MG Injection	cefepime 2000 MG Injection	46287349	46287349	SCD
+RXNORM:1732006	1 ML morphine sulfate 4 MG/ML Injection	1 ML morphine sulfate 4 MG/ML Injection	35605844	35605844	SCD
+RXNORM:1735003	2 ML fentanyl 0.05 MG/ML Injection	2 ML fentanyl 0.05 MG/ML Injection	35603428	35603428	SCD
+RXNORM:1735004	fentanyl 0.05 MG/ML Injection	fentanyl 0.05 MG/ML Injection	35603429	35603429	SCD
+RXNORM:1740467	2 ML ondansetron 2 MG/ML Injection	2 ML ondansetron 2 MG/ML Injection	35605482	35605482	SCD
+RXNORM:1807628	sodium chloride 9 MG/ML Injection	sodium chloride 9 MG/ML Injection	40221382	40221382	SCD
+RXNORM:1807632	100 ML sodium chloride 9 MG/ML Injection	100 ML sodium chloride 9 MG/ML Injection	40221385	40221385	SCD
+RXNORM:1807633	250 ML sodium chloride 9 MG/ML Injection	250 ML sodium chloride 9 MG/ML Injection	40221386	40221386	SCD
+RXNORM:198440	acetaminophen 500 MG Oral Tablet	acetaminophen 500 MG Oral Tablet	19020053	19020053	SCD
+RXNORM:310273	famotidine 20 MG Oral Tablet	famotidine 20 MG Oral Tablet	19077241	19077241	SCD
+RXNORM:310431	gabapentin 300 MG Oral Capsule	gabapentin 300 MG Oral Capsule	19077548	19077548	SCD
+RXNORM:313782	acetaminophen 325 MG Oral Tablet	acetaminophen 325 MG Oral Tablet	1127433	1127433	SCD
+RXNORM:314200	pantoprazole 40 MG Delayed Release Oral Tablet	pantoprazole 40 MG Delayed Release Oral Tablet	19080217	19080217	SCD
+RXNORM:318272	aspirin 81 MG Chewable Tablet	aspirin 81 MG Chewable Tablet	1113346	1113346	SCD
+RXNORM:617311	atorvastatin 40 MG Oral Tablet	atorvastatin 40 MG Oral Tablet	1545996	1545996	SCD
+RXNORM:834127	chlorhexidine gluconate 1.2 MG/ML Mouthwash	chlorhexidine gluconate 1.2 MG/ML Mouthwash	1790982	1790982	SCD
+RXNORM:854235	0.4 ML enoxaparin sodium 100 MG/ML Prefilled Syringe	0.4 ML enoxaparin sodium 100 MG/ML Prefilled Syringe	40160973	40160973	SCD
+RXNORM:1797907	Fluticason	fluticasone propionate 0.05 MG/ACTUAT Metered Dose Nasal Spray	36250141	36250141	UNKNOWN
+RXNORM:1795964	Fluticason	NULL	0	0	UNKNOWN
+RXNORM:901044	Ergocalcifirol	ergocalciferol 1.25 MG Oral Capsule [Drisdol]	40172950	43012673	UNKNOWN
+RXNORM:1490493	Heparin	NULL	0	0	UNKNOWN
