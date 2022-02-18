@@ -127,6 +127,23 @@ GROUP BY VOCABULARY
 
 /* END TOP CONCEPT CD METRICS */
 
+/* FINAL OUTPUT */
+
+SELECT 
+	'data_model' as variable_name
+	,(SELECT TOP 1 data_model from #tmp_cm22_user_input) as one_year -- 4 = ACT
+	,(SELECT TOP 1 data_model from #tmp_cm22_user_input) as five_year -- 4 = ACT
+UNION
+SELECT
+	'nlp_any' as variable_name
+	,(SELECT TOP 1 nlp_any from #tmp_cm22_user_input) as one_year 
+	,(SELECT TOP 1 nlp_any from #tmp_cm22_user_input) as five_year
+UNION
+SELECT
+	'text_search' as variable_name
+	,(SELECT TOP 1 text_search from #tmp_cm22_user_input) as one_year 
+	,(SELECT TOP 1 text_search from #tmp_cm22_user_input) as five_year
+UNION 
 SELECT VARIABLE_NAME, TRY_CAST(ONE_YEAR AS NUMERIC(10,2)) ONE_YEAR, TRY_CAST(FIVE_YEAR AS NUMERIC(10,2)) FIVE_YEAR
 FROM (
 SELECT 'total_patients' as variable_name  , SUM(ONE_YEAR) AS ONE_YEAR, SUM(FIVE_YEAR) FIVE_YEAR
