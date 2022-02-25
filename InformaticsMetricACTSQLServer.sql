@@ -12,6 +12,7 @@ IF OBJECT_ID(N'tempdb..#tmp_cm22_c1yr', 'U') IS NOT NULL 			      DROP TABLE #tm
 IF OBJECT_ID(N'tempdb..#tmp_cm22_c5yr', 'U') IS NOT NULL 			      DROP TABLE #tmp_cm22_c5yr;
 IF OBJECT_ID(N'tempdb..#tmp_cm22_masterPatient', 'U') IS NOT NULL 	DROP TABLE #tmp_cm22_masterPatient;
 IF OBJECT_ID(N'tempdb..#cm22_concept_checks', 'U') IS NOT NULL 	    DROP TABLE #cm22_concept_checks;
+IF OBJECT_ID(N'tempdb..#cm22_output', 'U') IS NOT NULL 	            DROP TABLE #cm22_output;
 /* 
 -------------------------
 	START user input
@@ -129,6 +130,9 @@ GROUP BY VOCABULARY
 
 /* FINAL OUTPUT */
 
+CREATE TABLE #cm22_output(variable_name varchar(100), one_year varchar(50), five_year varchar(50))
+
+INSERT INTO #cm22_output(variable_name,one_year,five_year)
 SELECT 
 	'data_model' as variable_name
 	,(SELECT TOP 1 data_model from #tmp_cm22_user_input) as one_year -- 4 = ACT
@@ -143,9 +147,8 @@ SELECT
 	'text_search' as variable_name
 	,(SELECT TOP 1 text_search from #tmp_cm22_user_input) as one_year 
 	,(SELECT TOP 1 text_search from #tmp_cm22_user_input) as five_year
-UNION 
-SELECT VARIABLE_NAME, TRY_CAST(ONE_YEAR AS NUMERIC(10,2)) ONE_YEAR, TRY_CAST(FIVE_YEAR AS NUMERIC(10,2)) FIVE_YEAR
-FROM (
+
+INSERT INTO #cm22_output(variable_name,one_year,five_year)
 SELECT 'total_patients' as variable_name  , SUM(ONE_YEAR) AS ONE_YEAR, SUM(FIVE_YEAR) FIVE_YEAR
 FROM #tmp_cm22_masterPatient
 UNION
@@ -166,7 +169,8 @@ FROM #tmp_cm22_masterPatient M
   JOIN PATIENT_DIMENSION P
     ON M.PATIENT_NUM = P.PATIENT_NUM
     AND P.SEX_CD IS NOT NULL
-UNION 
+
+INSERT INTO #cm22_output(variable_name,one_year,five_year)
 SELECT VARIABLE_NAME, SUM(ONE_YEAR*ONE_YEAR_FACT) ONE_YEAR, SUM(FIVE_YEAR*FIVE_YEAR_FACT) FIVE_YEAR
 FROM (
 SELECT DOMC.VARIABLE_NAME
@@ -182,12 +186,15 @@ FROM #tmp_cm22_masterPatient M
 GROUP BY DOMC.VARIABLE_NAME, M.PATIENT_NUM, M.ONE_YEAR, M.FIVE_YEAR
 )DOMF
 GROUP BY VARIABLE_NAME
-)TU
-UNION 
-SELECT CONCAT(VOCABULARY,'_check (shown as pct)') as variable_name
+
+INSERT INTO #cm22_output(variable_name,one_year,five_year)
+SELECT CONCAT(VOCABULARY,'_check') as variable_name
   , TRY_CAST(1.0*ONEYEAR_NUMERATOR/DENOMINATOR *100 AS NUMERIC(10,2)) AS ONE_YEAR
   , TRY_CAST(1.0*FIVEYEAR_NUMERATOR/DENOMINATOR*100 AS NUMERIC(10,2)) AS FIVE_YEAR
 FROM #cm22_concept_checks
+
+
+SELECT * FROM #cm22_output
 
 
 
