@@ -2,8 +2,7 @@
 -- PCORnet Common Data Model 6.0
 -- Written for Oracle
 
---TODO: Performance is bad. I was trying not to create tables to make things easier for sites but it takes forever to run. Need to fix.
---TODO: Need to write common code check scripts
+--TODO: Performance is not good.
 
 with opioid_meds as (
 select 1804028 as rxn_code,'Methadone' as med_type from dual union select
@@ -851,6 +850,18 @@ UNION
 SELECT cond.PATID, cond.CONDITION as dx, cond.REPORT_DATE as dxDate
 FROM CONDITION cond 
 WHERE cond.CONDITION LIKE 'F11%' and cond.REPORT_DATE between '01-JAN-2017' and '31-DEC-2021'
+),
+
+--denominators
+totpts as (
+select 
+    'total_patients' as description,
+    (select count(distinct dem.PATID) from ENCOUNTER enc1y JOIN DEMOGRAPHIC dem ON enc1y.PATID = dem.PATID 
+        where enc1y.ADMIT_DATE between '01-JAN-2021' and '31-DEC-2021') as one_year,
+    (select count(distinct dem.PATID) from ENCOUNTER enc5y JOIN DEMOGRAPHIC dem ON enc5y.PATID = dem.PATID 
+        where enc5y.ADMIT_DATE between '01-JAN-2017' and '31-DEC-2021') as five_year
+from
+    dual
 )
 
 --data model
@@ -884,14 +895,8 @@ from
 UNION
 
 -- total patients
-select 
-    'total_patients' as description,
-    (select count(distinct dem.PATID) from ENCOUNTER enc1y JOIN DEMOGRAPHIC dem ON enc1y.PATID = dem.PATID 
-        where enc1y.ADMIT_DATE between '01-JAN-2021' and '31-DEC-2021') as one_year,
-    (select count(distinct dem.PATID) from ENCOUNTER enc5y JOIN DEMOGRAPHIC dem ON enc5y.PATID = dem.PATID 
-        where enc5y.ADMIT_DATE between '01-JAN-2017' and '31-DEC-2021') as five_year
-from
-    dual
+select *
+from totpts
 
 UNION
 
@@ -1125,5 +1130,122 @@ select
     (select count(distinct dem.PATID) from ENCOUNTER enc5y JOIN DEMOGRAPHIC dem ON enc5y.PATID = dem.PATID 
         where enc5y.ADMIT_DATE between '01-JAN-2017' and '31-DEC-2021' and enc5y.payer_type_primary is not null
         and enc5y.payer_type_primary not in ('NI','UN')) as five_year
+from
+    dual
+    
+UNION
+
+--assumptions: numerator is the number of patients with that code for the time period, denominator is all patients in that time period
+select 
+    'cpt4_check' as description,
+    --one yr numerator
+    ((select 
+        count(distinct px1y.PATID) 
+     from PROCEDURES px1y JOIN common_codes cc ON px1y.PX = cc.code and cc.type = 'CPT'
+     WHERE px1y.PX_TYPE = 'CH' 
+        and px1y.ADMIT_DATE between '01-JAN-2021' and '31-DEC-2021') / (select one_year from totpts))*100
+        as one_year,
+    ((select count(distinct px5y.PATID) 
+     from PROCEDURES px5y JOIN common_codes cc ON px5y.PX = cc.code and cc.type = 'CPT'
+     WHERE px5y.PX_TYPE = 'CH' 
+        and px5y.ADMIT_DATE between '01-JAN-2017' and '31-DEC-2021') / (select five_year from totpts))*100 as five_year
+from
+    dual
+    
+UNION
+
+select 
+    'icd10pcs_check' as description,
+    --one yr numerator
+    ((select 
+        count(distinct px1y.PATID) 
+     from PROCEDURES px1y JOIN common_codes cc ON px1y.PX = cc.code and cc.type = 'ICD-10-PROC'
+     WHERE px1y.PX_TYPE = '10' 
+        and px1y.ADMIT_DATE between '01-JAN-2021' and '31-DEC-2021') / (select one_year from totpts))*100
+        as one_year,
+    ((select count(distinct px5y.PATID) 
+     from PROCEDURES px5y JOIN common_codes cc ON px5y.PX = cc.code and cc.type = 'ICD-10-PROC'
+     WHERE px5y.PX_TYPE = '10' 
+        and px5y.ADMIT_DATE between '01-JAN-2017' and '31-DEC-2021') / (select five_year from totpts))*100 as five_year
+from
+    dual
+
+UNION
+
+select 
+    'icd9pcs_check' as description,
+    --one yr numerator
+    ((select 
+        count(distinct px1y.PATID) 
+     from PROCEDURES px1y JOIN common_codes cc ON px1y.PX = cc.code and cc.type = 'ICD-9-PROC'
+     WHERE px1y.PX_TYPE = '09' 
+        and px1y.ADMIT_DATE between '01-JAN-2021' and '31-DEC-2021') / (select one_year from totpts))*100
+        as one_year,
+    ((select count(distinct px5y.PATID) 
+     from PROCEDURES px5y JOIN common_codes cc ON px5y.PX = cc.code and cc.type = 'ICD-9-PROC'
+     WHERE px5y.PX_TYPE = '09' 
+        and px5y.ADMIT_DATE between '01-JAN-2017' and '31-DEC-2021') / (select five_year from totpts))*100 as five_year
+from
+    dual
+
+UNION
+
+select 
+    'icd10cm_check' as description,
+    ((select count(*) from (select dx1y.PATID from DIAGNOSIS dx1y JOIN common_codes cc ON dx1y.DX = cc.code and cc.type = 'ICD-10' 
+        WHERE dx1y.DX_TYPE = '10' and dx1y.ADMIT_DATE between '01-JAN-2021' and '31-DEC-2021'
+     UNION
+     select con1y.PATID from CONDITION con1y JOIN common_codes cc ON con1y.CONDITION = cc.code and cc.type = 'ICD-10' 
+        WHERE con1y.CONDITION_TYPE = '10' and con1y.REPORT_DATE between '01-JAN-2021' and '31-DEC-2021')) / (select one_year from totpts))*100 as one_year,
+        
+    ((select count(*) from (select dx5y.PATID from DIAGNOSIS dx5y JOIN common_codes cc ON dx5y.DX = cc.code and cc.type = 'ICD-10' 
+        WHERE dx5y.DX_TYPE = '10' and dx5y.ADMIT_DATE between '01-JAN-2017' and '31-DEC-2021'
+     UNION
+     select con5y.PATID from CONDITION con5y JOIN common_codes cc ON con5y.CONDITION = cc.code and cc.type = 'ICD-10' 
+        WHERE con5y.CONDITION_TYPE = '10' and con5y.REPORT_DATE between '01-JAN-2017' and '31-DEC-2021'))  / (select five_year from totpts))*100 as five_year
+from dual
+
+UNION
+
+select 
+    'icd9cm_check' as description,
+    ((select count(*) from (select dx1y.PATID from DIAGNOSIS dx1y JOIN common_codes cc ON dx1y.DX = cc.code and cc.type = 'ICD-9' 
+        WHERE dx1y.DX_TYPE = '09' and dx1y.ADMIT_DATE between '01-JAN-2021' and '31-DEC-2021'
+     UNION
+     select con1y.PATID from CONDITION con1y JOIN common_codes cc ON con1y.CONDITION = cc.code and cc.type = 'ICD-9' 
+        WHERE con1y.CONDITION_TYPE = '09' and con1y.REPORT_DATE between '01-JAN-2021' and '31-DEC-2021')) / (select one_year from totpts))*100 as one_year,
+        
+    ((select count(*) from (select dx5y.PATID from DIAGNOSIS dx5y JOIN common_codes cc ON dx5y.DX = cc.code and cc.type = 'ICD-9' 
+        WHERE dx5y.DX_TYPE = '09' and dx5y.ADMIT_DATE between '01-JAN-2017' and '31-DEC-2021'
+     UNION
+     select con5y.PATID from CONDITION con5y JOIN common_codes cc ON con5y.CONDITION = cc.code and cc.type = 'ICD-9' 
+        WHERE con5y.CONDITION_TYPE = '09' and con5y.REPORT_DATE between '01-JAN-2017' and '31-DEC-2021'))  / (select five_year from totpts))*100 as five_year
+from dual
+
+UNION
+
+select
+ 'loinc_check' as description,
+ ((select count(distinct lb1y.PATID) from LAB_RESULT_CM lb1y where lb1y.LAB_LOINC is not null and (lb1y.RESULT_DATE
+        between '01-JAN-2021' and '31-DEC-2021' or lb1y.LAB_ORDER_DATE between '01-JAN-2021' and '31-DEC-2021')) / (select one_year from totpts))*100 as one_year,
+ ((select count(distinct lb5y.PATID) from LAB_RESULT_CM lb5y where lb5y.LAB_LOINC is not null and (lb5y.RESULT_DATE
+        between '01-JAN-2017' and '31-DEC-2021' or lb5y.LAB_ORDER_DATE between '01-JAN-2017' and '31-DEC-2021')) / (select five_year from totpts))*100 as five_year
+from dual
+  
+UNION
+
+select
+  'rxnorm_check' as description,
+    ((select count(*) from (select med1y.PATID from PRESCRIBING med1y WHERE med1y.RXNORM_CUI is not null and med1y.RX_ORDER_DATE 
+        between '01-JAN-2021' and '31-DEC-2021'
+     UNION
+     select med1yad.PATID from MED_ADMIN med1yad WHERE med1yad.MEDADMIN_TYPE = 'RX' and med1yad.MEDADMIN_START_DATE 
+        between '01-JAN-2021' and '31-DEC-2021')) / (select one_year from totpts))*100 as one_year,
+        
+    ((select count(*) from (select med5y.PATID from PRESCRIBING med5y WHERE med5y.RXNORM_CUI is not null and med5y.RX_ORDER_DATE 
+        between '01-JAN-2017' and '31-DEC-2021'
+     UNION
+     select med5yad.PATID from MED_ADMIN med5yad WHERE med5yad.MEDADMIN_TYPE = 'RX' and med5yad.MEDADMIN_START_DATE 
+        between '01-JAN-2017' and '31-DEC-2021')) / (select five_year from totpts))*100 as five_year
 from
     dual
