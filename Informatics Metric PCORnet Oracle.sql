@@ -2,7 +2,7 @@
 -- PCORnet Common Data Model 6.0
 -- Written for Oracle
 
---TODO: Performance is not good.
+--This takes between 2-3 hours to run
 
 with opioid_meds as (
 select 1804028 as rxn_code,'Methadone' as med_type from dual union select
@@ -1062,12 +1062,12 @@ from
 
 UNION		   
 
--- encounters with at least one vital sign
+-- patients with at least one vital sign
 -- will need to be changed when PCORnet drops the VITAL table.
 select 
     'uniq_enc_vital_sign' as description,
-    (select count(distinct vit1y.ENCOUNTERID) from VITAL vit1y WHERE vit1y.MEASURE_DATE between '01-JAN-2021' and '31-DEC-2021') as one_year,
-    (select count(distinct vit5y.ENCOUNTERID) from VITAL vit5y WHERE vit5y.MEASURE_DATE between '01-JAN-2017' and '31-DEC-2021') as five_year
+    (select count(distinct vit1y.PATID) from VITAL vit1y WHERE vit1y.MEASURE_DATE between '01-JAN-2021' and '31-DEC-2021') as one_year,
+    (select count(distinct vit5y.PATID) from VITAL vit5y WHERE vit5y.MEASURE_DATE between '01-JAN-2017' and '31-DEC-2021') as five_year
 from
     dual
 
