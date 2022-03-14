@@ -1192,13 +1192,13 @@ UNION
 
 select 
     'icd10cm_check' as description,
-    ((select count(distinct *) from (select dx1y.DX from DIAGNOSIS dx1y JOIN common_codes cc ON dx1y.DX = cc.code and cc.type = 'ICD-10' 
+    ((select count(*) from (select dx1y.DX from DIAGNOSIS dx1y JOIN common_codes cc ON dx1y.DX = cc.code and cc.type = 'ICD-10' 
         WHERE dx1y.DX_TYPE = '10' and dx1y.ADMIT_DATE between '01-JAN-2021' and '31-DEC-2021'
      UNION
      select con1y.CONDITION from CONDITION con1y JOIN common_codes cc ON con1y.CONDITION = cc.code and cc.type = 'ICD-10' 
         WHERE con1y.CONDITION_TYPE = '10' and con1y.REPORT_DATE between '01-JAN-2021' and '31-DEC-2021')) / (select count(distinct code) from common_codes where type = 'ICD-10'))*100 as one_year,
         
-    ((select count(distinct*) from (select dx5y.DX from DIAGNOSIS dx5y JOIN common_codes cc ON dx5y.DX = cc.code and cc.type = 'ICD-10' 
+    ((select count(*) from (select dx5y.DX from DIAGNOSIS dx5y JOIN common_codes cc ON dx5y.DX = cc.code and cc.type = 'ICD-10' 
         WHERE dx5y.DX_TYPE = '10' and dx5y.ADMIT_DATE between '01-JAN-2017' and '31-DEC-2021'
      UNION
      select con5y.CONDITION from CONDITION con5y JOIN common_codes cc ON con5y.CONDITION = cc.code and cc.type = 'ICD-10' 
