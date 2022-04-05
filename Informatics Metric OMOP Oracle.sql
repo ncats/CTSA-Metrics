@@ -181,27 +181,27 @@ SELECT
 DISTINCT person_id
 FROM
 condition_occurrence 
-    WHERE condition_start_date BETWEEN '01-01-2021' AND '12-31-2021'
+    WHERE condition_start_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
    UNION 
 SELECT DISTINCT person_id
 FROM procedure_occurrence 
-    WHERE procedure_date BETWEEN '01-01-2021' AND '12-31-2021'
+    WHERE procedure_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
    UNION 
 SELECT DISTINCT person_id
 FROM drug_exposure
-    WHERE drug_exposure_start_date BETWEEN '01-01-2021' AND '12-31-2021'
+    WHERE drug_exposure_start_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
    UNION 
 SELECT DISTINCT person_id
 FROM device_exposure
-    WHERE device_exposure_start_date BETWEEN '01-01-2021' AND '12-31-2021'
+    WHERE device_exposure_start_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
    UNION 
 SELECT DISTINCT person_id
 FROM measurement
-    WHERE measurement_date BETWEEN '01-01-2021' AND '12-31-2021'
+    WHERE measurement_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
    UNION 
 SELECT DISTINCT person_id
 FROM observation
-  WHERE observation_date BETWEEN '01-01-2021' AND '12-31-2021'
+  WHERE observation_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
            ;
 -- Generate 5yr cohort
 CREATE TABLE tncatscm22_c5yr
@@ -210,27 +210,27 @@ SELECT
 DISTINCT person_id
 FROM
 condition_occurrence 
-    WHERE condition_start_date BETWEEN '01-01-2017' AND '12-31-2021'		
+    WHERE condition_start_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')		
    UNION 
 SELECT DISTINCT person_id
 FROM procedure_occurrence 
-    WHERE procedure_date BETWEEN '01-01-2017' AND '12-31-2021'	
+    WHERE procedure_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')	
    UNION 
 SELECT DISTINCT person_id
 FROM drug_exposure
-    WHERE drug_exposure_start_date BETWEEN '01-01-2017' AND '12-31-2021'
+    WHERE drug_exposure_start_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
    UNION 
 SELECT DISTINCT person_id
 FROM device_exposure
-    WHERE device_exposure_start_date BETWEEN '01-01-2017' AND '12-31-2021'
+    WHERE device_exposure_start_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
    UNION 
 SELECT DISTINCT person_id
 FROM measurement
-    WHERE measurement_date BETWEEN '01-01-2017' AND '12-31-2021'
+    WHERE measurement_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
    UNION 
 SELECT DISTINCT person_id
 FROM observation
-  WHERE observation_date BETWEEN '01-01-2017' AND '12-31-2021'
+  WHERE observation_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
            ;
 -- Vocabulary utilization concept checks 
 -- create list of concepts 
@@ -308,31 +308,31 @@ LEFT OUTER JOIN
 		FROM condition_occurrence cond
 		INNER JOIN tncatscm22_c1yr c1yr
 		ON cond.person_id = c1yr.person_id
-		AND cond.condition_start_date BETWEEN '01-01-2021' AND '12-31-2021' 
+		AND cond.condition_start_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD') 
 		  UNION
 		SELECT DISTINCT procedure_concept_id  concept_id
 		FROM procedure_occurrence y
 		INNER JOIN tncatscm22_c1yr c1yr
 		ON y.person_id = c1yr.person_id
-		AND y.procedure_date BETWEEN '01-01-2021' AND '12-31-2021' 
+		AND y.procedure_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD') 
 		  UNION
 		SELECT DISTINCT drug_concept_id  concept_id
 		FROM drug_exposure y
 		INNER JOIN tncatscm22_c1yr c1yr
 		ON y.person_id = c1yr.person_id
-		AND y.drug_exposure_start_date BETWEEN '01-01-2021' AND '12-31-2021' 
+		AND y.drug_exposure_start_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD') 
 		  UNION
 		SELECT DISTINCT observation_concept_id  concept_id
 		FROM observation y
 		INNER JOIN tncatscm22_c1yr c1yr
 		ON y.person_id = c1yr.person_id
-		AND y.observation_date BETWEEN '01-01-2021' AND '12-31-2021' 
+		AND y.observation_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD') 
 		  UNION
 		SELECT DISTINCT measurement_concept_id  concept_id
 		FROM measurement y
 		INNER JOIN tncatscm22_c1yr c1yr
 		ON y.person_id = c1yr.person_id
-		AND y.measurement_date BETWEEN '01-01-2021' AND '12-31-2021' 
+		AND y.measurement_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD') 
 	 )
  ) x
 ON cc.src_concept_id = x.src_concept_id
@@ -353,31 +353,31 @@ LEFT OUTER JOIN
 		FROM condition_occurrence cond
 		INNER JOIN tncatscm22_c1yr c1yr
 		ON cond.person_id = c1yr.person_id
-		AND cond.condition_start_date BETWEEN '01-01-2017' AND '12-31-2021' 
+		AND cond.condition_start_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD') 
 		  UNION
 		SELECT DISTINCT procedure_concept_id  concept_id
 		FROM procedure_occurrence y
 		INNER JOIN tncatscm22_c1yr c1yr
 		ON y.person_id = c1yr.person_id
-		AND y.procedure_date BETWEEN '01-01-2017' AND '12-31-2021' 
+		AND y.procedure_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD') 
 		  UNION
 		SELECT DISTINCT drug_concept_id  concept_id
 		FROM drug_exposure y
 		INNER JOIN tncatscm22_c1yr c1yr
 		ON y.person_id = c1yr.person_id
-		AND y.drug_exposure_start_date BETWEEN '01-01-2017' AND '12-31-2021' 
+		AND y.drug_exposure_start_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD') 
 		  UNION
 		SELECT DISTINCT observation_concept_id  concept_id
 		FROM observation y
 		INNER JOIN tncatscm22_c1yr c1yr
 		ON y.person_id = c1yr.person_id
-		AND y.observation_date BETWEEN '01-01-2017' AND '12-31-2021' 
+		AND y.observation_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD') 
 		  UNION
 		SELECT DISTINCT measurement_concept_id  concept_id
 		FROM measurement y
 		INNER JOIN tncatscm22_c1yr c1yr
 		ON y.person_id = c1yr.person_id
-		AND y.measurement_date BETWEEN '01-01-2017' AND '12-31-2021' 
+		AND y.measurement_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD') 
 	 )
  ) x
 ON cc.src_concept_id = x.src_concept_id
@@ -419,12 +419,12 @@ SELECT 'data_model' as variable_name
 		FROM person per
 		INNER JOIN death dth 
 		ON per.person_id = dth.person_id
-		AND (EXTRACT(YEAR FROM CAST(dth.death_date AS DATE)) - EXTRACT(YEAR FROM CAST(per.birth_datetime AS DATE))) > 120
+		AND (EXTRACT(YEAR FROM dth.death_date) - EXTRACT(YEAR FROM per.birth_datetime)) > 120
 		-- No DOD, 12/31-2021 - DOB > 120
 		  UNION
 		SELECT DISTINCT person_id 
 		FROM person 
-		  WHERE (EXTRACT(YEAR FROM CAST('12-31-2022' AS DATE)) - EXTRACT(YEAR FROM CAST(birth_datetime AS DATE))) > 120
+		WHERE (2022 - EXTRACT(YEAR FROM birth_datetime)) > 120
 		AND person_id NOT IN (SELECT person_id FROM death )
 	 ) per
 	INNER JOIN tncatscm22_c1yr x
@@ -435,12 +435,12 @@ SELECT 'data_model' as variable_name
 		FROM person per
 		INNER JOIN death dth 
 		ON per.person_id = dth.person_id
-		AND (EXTRACT(YEAR FROM CAST(dth.death_date AS DATE)) - EXTRACT(YEAR FROM CAST(per.birth_datetime AS DATE))) > 120
+		AND (EXTRACT(YEAR FROM dth.death_date) - EXTRACT(YEAR FROM per.birth_datetime)) > 120
 		-- No DOD, 12/31-2021 - DOB > 120
 		  UNION
 		SELECT person_id 
 		FROM person 
-		  WHERE (EXTRACT(YEAR FROM CAST('12-31-2022' AS DATE)) - EXTRACT(YEAR FROM CAST(birth_datetime AS DATE))) > 120
+		WHERE (2022 - EXTRACT(YEAR FROM birth_datetime)) > 120
 		AND person_id NOT IN (SELECT person_id FROM death )
 	 ) per
 	INNER JOIN tncatscm22_c5yr x
@@ -476,14 +476,14 @@ SELECT 'data_model' as variable_name
 		INNER JOIN concept conc
 		ON conc.vocabulary_id = 'LOINC'
 		AND meas.measurement_concept_id = conc.concept_id
-		AND measurement_date BETWEEN '01-01-2021' AND '12-31-2021'
+		AND measurement_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 		  UNION 
 		SELECT DISTINCT person_id
 		FROM observation obs
 		INNER JOIN concept conc
 		ON conc.vocabulary_id = 'LOINC'
 		AND obs.observation_concept_id = conc.concept_id
-		AND observation_date BETWEEN '01-01-2021' AND '12-31-2021'
+		AND observation_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	 ) per
 	INNER JOIN tncatscm22_c1yr x
 	ON per.person_id = x.person_id
@@ -494,14 +494,14 @@ SELECT 'data_model' as variable_name
 		INNER JOIN concept conc
 		ON conc.vocabulary_id = 'LOINC'
 		AND meas.measurement_concept_id = conc.concept_id
-		AND measurement_date BETWEEN '01-01-2017' AND '12-31-2021'
+		AND measurement_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 		  UNION 
 		SELECT DISTINCT person_id
 		FROM observation obs
 		INNER JOIN concept conc
 		ON conc.vocabulary_id = 'LOINC'
 		AND obs.observation_concept_id = conc.concept_id
-		AND observation_date BETWEEN '01-01-2017' AND '12-31-2021'
+		AND observation_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	 ) per
 	INNER JOIN tncatscm22_c5yr x
 	ON per.person_id = x.person_id
@@ -512,7 +512,7 @@ SELECT 'data_model' as variable_name
 	INNER JOIN concept conc
 	ON conc.vocabulary_id in ('RxNorm')
 	AND drug.drug_concept_id = conc.concept_id
-	AND drug_exposure_start_date BETWEEN '01-01-2021' AND '12-31-2021'
+	AND drug_exposure_start_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	INNER JOIN tncatscm22_c1yr x
 	ON drug.person_id = x.person_id
  )  one_year
@@ -521,7 +521,7 @@ SELECT 'data_model' as variable_name
 	INNER JOIN concept conc
 	ON conc.vocabulary_id in ('RxNorm')
 	AND drug.drug_concept_id = conc.concept_id
-	AND drug_exposure_start_date BETWEEN '01-01-2017' AND '12-31-2021'
+	AND drug_exposure_start_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	INNER JOIN tncatscm22_c5yr x
 	ON drug.person_id = x.person_id
  ) as five_year
@@ -538,7 +538,7 @@ SELECT 'data_model' as variable_name
 			AND relationship_id = 'Maps to'
 			AND c1.vocabulary_id IN ('ICD9CM', 'ICD10CM')
 	 )
-	AND condition_start_date BETWEEN '01-01-2021' AND '12-31-2021'
+	AND condition_start_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
  )  one_year
 ,(SELECT COUNT(DISTINCT x.person_id)
 	FROM condition_occurrence cond
@@ -552,7 +552,7 @@ SELECT 'data_model' as variable_name
 			AND relationship_id = 'Maps to'
 			AND c1.vocabulary_id IN ('ICD9CM', 'ICD10CM')
 	 )
-	AND condition_start_date BETWEEN '01-01-2017' AND '12-31-2021'
+	AND condition_start_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
  ) as five_year
   FROM DUAL  UNION SELECT 'uniq_pt_snomed_dx'  variable_name
 ,(SELECT COUNT(DISTINCT x.person_id)
@@ -560,7 +560,7 @@ SELECT 'data_model' as variable_name
 	INNER JOIN concept conc 
 	ON conc.vocabulary_id = 'SNOMED'
 	AND cond.condition_concept_id = conc.concept_id
-	AND condition_start_date BETWEEN '01-01-2021' AND '12-31-2021'
+	AND condition_start_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	INNER JOIN tncatscm22_c1yr x
 	ON cond.person_id = x.person_id
  )  one_year
@@ -569,7 +569,7 @@ SELECT 'data_model' as variable_name
 	INNER JOIN concept conc 
 	ON conc.vocabulary_id = 'SNOMED'
 	AND cond.condition_concept_id = conc.concept_id
-	AND condition_start_date BETWEEN '01-01-2017' AND '12-31-2021'
+	AND condition_start_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	INNER JOIN tncatscm22_c5yr x
 	ON cond.person_id = x.person_id
  ) as five_year
@@ -586,7 +586,7 @@ SELECT 'data_model' as variable_name
 			AND relationship_id = 'Maps to'
 			AND c1.vocabulary_id IN ('ICD10PCS', 'ICD9Proc')
 	 )
-	AND procedure_date BETWEEN '01-01-2021' AND '12-31-2021'
+	AND procedure_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
  )  one_year
 ,(SELECT COUNT(DISTINCT x.person_id)
 	FROM procedure_occurrence proce
@@ -600,7 +600,7 @@ SELECT 'data_model' as variable_name
 			AND relationship_id = 'Maps to'
 			AND c1.vocabulary_id IN ('ICD10PCS', 'ICD9Proc')
 	 )
-	AND procedure_date BETWEEN '01-01-2017' AND '12-31-2021'
+	AND procedure_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
  ) as five_year
   FROM DUAL  UNION SELECT 'uniq_pt_cpt'  variable_name
 ,(SELECT COUNT(DISTINCT x.person_id)
@@ -608,7 +608,7 @@ SELECT 'data_model' as variable_name
 	INNER JOIN concept conc
 	ON conc.vocabulary_id IN ('CPT4', 'HCPCS')
 	AND proce.procedure_concept_id = conc.concept_id
-	AND procedure_date BETWEEN '01-01-2021' AND '12-31-2021'
+	AND procedure_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	INNER JOIN tncatscm22_c1yr x
 	ON proce.person_id = x.person_id
  )  one_year
@@ -617,7 +617,7 @@ SELECT 'data_model' as variable_name
 	INNER JOIN concept conc
 	ON conc.vocabulary_id IN ('CPT4', 'HCPCS')
 	AND proce.procedure_concept_id = conc.concept_id
-	AND procedure_date BETWEEN '01-01-2017' AND '12-31-2021'
+	AND procedure_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	INNER JOIN tncatscm22_c5yr x
 	ON proce.person_id = x.person_id
  ) as five_year
@@ -627,7 +627,7 @@ SELECT 'data_model' as variable_name
 	INNER JOIN concept conc
 	ON conc.vocabulary_id = 'SNOMED'
 	AND proce.procedure_concept_id = conc.concept_id
-	AND procedure_date BETWEEN '01-01-2021' AND '12-31-2021'
+	AND procedure_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	INNER JOIN tncatscm22_c1yr x
 	ON proce.person_id = x.person_id
  )  one_year
@@ -636,7 +636,7 @@ SELECT 'data_model' as variable_name
 	INNER JOIN concept conc
 	ON conc.vocabulary_id = 'SNOMED'
 	AND proce.procedure_concept_id = conc.concept_id
-	AND procedure_date BETWEEN '01-01-2017' AND '12-31-2021'
+	AND procedure_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	INNER JOIN tncatscm22_c5yr x
 	ON proce.person_id = x.person_id
  ) as five_year
@@ -645,13 +645,13 @@ SELECT 'data_model' as variable_name
 	FROM note n
 	INNER JOIN tncatscm22_c1yr x
 	ON n.person_id = x.person_id
-	AND note_date BETWEEN '01-01-2020' AND '12-31-2021'
+	AND note_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
  )  one_year
 ,(SELECT COUNT(DISTINCT x.person_id)
 	FROM note n
 	INNER JOIN tncatscm22_c5yr x
 	ON n.person_id = x.person_id
-	AND note_date BETWEEN '01-01-2017' AND '12-31-2021'
+	AND note_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
  ) as five_year
   FROM DUAL  UNION SELECT 'uniq_pt_vital_sign'  variable_name
 ,(SELECT COUNT(distinct x.person_id) 
@@ -662,7 +662,7 @@ SELECT 'data_model' as variable_name
 			FROM tncatscm22_vitals
 			  WHERE domain_id = 'Measurement'
 		 )
-		AND measurement_date BETWEEN '01-01-2021' AND '12-31-2021'
+		AND measurement_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 		   UNION 
 		SELECT DISTINCT person_id
 		FROM OBSERVATION
@@ -671,7 +671,7 @@ SELECT 'data_model' as variable_name
 			FROM tncatscm22_vitals
 			  WHERE domain_id = 'Observation'
 		 )
-		AND observation_date BETWEEN '01-01-2021' AND '12-31-2021'
+		AND observation_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	 ) per
 	INNER JOIN tncatscm22_c1yr x
 	ON per.person_id = x.person_id
@@ -684,7 +684,7 @@ SELECT 'data_model' as variable_name
 			FROM tncatscm22_vitals
 			  WHERE domain_id = 'Measurement'
 		 )
-		AND measurement_date BETWEEN '01-01-2017' AND '12-31-2021'
+		AND measurement_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 		   UNION 
 		SELECT DISTINCT person_id
 		FROM OBSERVATION
@@ -693,7 +693,7 @@ SELECT 'data_model' as variable_name
 			FROM tncatscm22_vitals
 			  WHERE domain_id = 'Observation'
 		 )
-		AND observation_date BETWEEN '01-01-2017' AND '12-31-2021'
+		AND observation_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	 ) per
 	INNER JOIN tncatscm22_c5yr x
 	ON per.person_id = x.person_id
@@ -707,7 +707,7 @@ SELECT 'data_model' as variable_name
 			FROM tncatscm22_smoking
 			  WHERE domain_id = 'Condition'
 		 )
-		AND condition_start_date BETWEEN '01-01-2021' AND '12-31-2021'
+		AND condition_start_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 		   UNION 
 		SELECT DISTINCT person_id 
 		FROM OBSERVATION
@@ -716,7 +716,7 @@ SELECT 'data_model' as variable_name
 			FROM tncatscm22_smoking
 			  WHERE domain_id = 'Observation'
 		 )
-		AND observation_date BETWEEN '01-01-2021' AND '12-31-2021'
+		AND observation_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	 ) per
 	INNER JOIN tncatscm22_c1yr x
 	ON per.person_id = x.person_id
@@ -729,7 +729,7 @@ SELECT 'data_model' as variable_name
 			FROM tncatscm22_smoking
 			  WHERE domain_id = 'Condition'
 		 )
-		AND condition_start_date BETWEEN '01-01-2017' AND '12-31-2021'
+		AND condition_start_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 		   UNION 
 		SELECT DISTINCT person_id 
 		FROM OBSERVATION
@@ -738,7 +738,7 @@ SELECT 'data_model' as variable_name
 			FROM tncatscm22_smoking
 			  WHERE domain_id = 'Observation'
 		 )
-		AND observation_date BETWEEN '01-01-2017' AND '12-31-2021'
+		AND observation_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	 ) per
 	INNER JOIN tncatscm22_c5yr x
 	ON per.person_id = x.person_id
@@ -752,7 +752,7 @@ SELECT 'data_model' as variable_name
 			FROM concept_ancestor
 			  WHERE ancestor_concept_id = 4032799 --Opioid-induced organic mental disorder
 		 ) 
-		AND condition_start_date BETWEEN '01-01-2021' AND '12-31-2021'
+		AND condition_start_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 		   UNION 
 		--"RxNorm (methadone {6813} and descendants, buprenorphine {1819} and descendant TTYs) "
 		SELECT DISTINCT person_id
@@ -765,7 +765,7 @@ SELECT 'data_model' as variable_name
 				,1133201	-- buprenorphine (1819 is the concept code)
 			)
 		 ) 
-		AND drug_exposure_start_date BETWEEN '01-01-2021' AND '12-31-2021'
+		AND drug_exposure_start_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	 ) per
 	INNER JOIN tncatscm22_c1yr x
 	ON per.person_id = x.person_id
@@ -778,7 +778,7 @@ SELECT 'data_model' as variable_name
 			FROM concept_ancestor
 			  WHERE ancestor_concept_id = 4032799 --Opioid-induced organic mental disorder
 		 ) 
-		AND condition_start_date BETWEEN '01-01-2017' AND '12-31-2021'
+		AND condition_start_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 		   UNION 
 		--"RxNorm (methadone {6813} and descendants, buprenorphine {1819} and descendant TTYs) "
 		SELECT DISTINCT person_id
@@ -791,7 +791,7 @@ SELECT 'data_model' as variable_name
 				,1133201	-- buprenorphine (1819 is the concept code)
 			)
 		 ) 
-		AND drug_exposure_start_date BETWEEN '01-01-2017' AND '12-31-2021'
+		AND drug_exposure_start_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	 ) per
 	INNER JOIN tncatscm22_c5yr x
 	ON per.person_id = x.person_id
@@ -802,9 +802,9 @@ SELECT 'data_model' as variable_name
 	INNER JOIN tncatscm22_c1yr x
 	ON per.person_id = x.person_id
 	AND (
-		payer_plan_period_start_date BETWEEN '01-01-2021' AND '12-31-2021'
+		payer_plan_period_start_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 		OR 
-		payer_plan_period_end_date BETWEEN '01-01-2021' AND '12-31-2021'
+		payer_plan_period_end_date BETWEEN TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	)
  )  one_year
 ,(SELECT COUNT(DISTINCT x.person_id)
@@ -812,9 +812,9 @@ SELECT 'data_model' as variable_name
 	INNER JOIN tncatscm22_c5yr x
 	ON per.person_id = x.person_id
 	AND (
-		payer_plan_period_start_date BETWEEN '01-01-2017' AND '12-31-2021'
+		payer_plan_period_start_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 		OR 
-		payer_plan_period_end_date BETWEEN '01-01-2017' AND '12-31-2021'
+		payer_plan_period_end_date BETWEEN TO_DATE(TO_CHAR(2017,'0000')||'-'||TO_CHAR(01,'00')||'-'||TO_CHAR(01,'00'), 'YYYY-MM-DD') AND TO_DATE(TO_CHAR(2021,'0000')||'-'||TO_CHAR(12,'00')||'-'||TO_CHAR(31,'00'), 'YYYY-MM-DD')
 	)
  ) as five_year
 -- NULL as NA. Best approach TBD for OMOP 
