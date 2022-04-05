@@ -659,7 +659,7 @@ SELECT
 	FROM note n
 	INNER JOIN #tmp_cm22_c1yr x
 	ON n.person_id = x.person_id
-	AND note_date BETWEEN '01-01-2020' AND '12-31-2021'
+	AND note_date BETWEEN '01-01-2021' AND '12-31-2021'
 ) as one_year
 ,(
 	SELECT COUNT(DISTINCT x.person_id)
