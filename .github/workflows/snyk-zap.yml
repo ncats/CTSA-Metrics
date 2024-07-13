@@ -1,7 +1,7 @@
 # Define the name of the workflow
 name: snyk-zap
 
-# Define when the workflow should be triggered (on push to a specific branch and pull requests to the master branch)
+# Define when the workflow should be trigger (on push to a specific branch and pull requests to the master branch)
 on:
   push:
     branches: [ "master" ]
